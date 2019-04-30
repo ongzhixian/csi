@@ -1,0 +1,2 @@
+#export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
+dotnet msbuild Csi.WebApp.csproj
