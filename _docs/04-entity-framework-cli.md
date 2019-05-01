@@ -40,3 +40,33 @@ Options:
 ```
 dotnet ef dbcontext scaffold "name=CsiDatabase" MySql.Data.EntityFrameworkCore -d -c CsiDbContext -o Data
 ```
+
+dotnet ef dbcontext list
+
+dotnet ef dbcontext info --context Csi.WebApp.Data.CsiDbContext
+
+dotnet ef migrations add CreateIdentitySchema --context Csi.WebApp.Data.CsiDbContext
+
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.1.8-servicing-32085 initialized 'CsiDbContext' using provider 'MySql.Data.EntityFrameworkCore' with options: None
+Done. To undo this action, use 'ef migrations remove'
+
+dotnet ef database update --context Csi.WebApp.Data.CsiDbContext
+
+dotnet ef migrations list --context Csi.WebApp.Data.CsiDbContext
+
+dotnet ef database update 20190501052953_CreateIdentitySchema --context Csi.WebApp.Data.CsiDbContext
+
+dotnet ef migrations add CreateIdentitySchema2 --context Csi.WebApp.Data.CsiDbContext
+dotnet ef database update --context Csi.WebApp.Data.CsiDbContext
+
+## Sql script to create __EFMigrationsHistory
+
+```
+CREATE TABLE `__EFMigrationsHistory` 
+( 
+    `MigrationId` nvarchar(150) NOT NULL, 
+    `ProductVersion` nvarchar(32) NOT NULL, 
+     PRIMARY KEY (`MigrationId`) 
+);
+```
