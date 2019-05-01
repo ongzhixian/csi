@@ -31,8 +31,34 @@ namespace Csi.WebApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            // services.AddDbContext<ApplicationDbContext>(options =>
+            //     options.UseSqlServer(
+            //         Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            // services.AddIdentity<IdentityUser, IdentityRole>()
+            //         // services.AddDefaultIdentity<IdentityUser>()
+            //         .AddEntityFrameworkStores<ApplicationDbContext>()
+            //         .AddDefaultTokenProviders();
+
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .AddRazorPagesOptions(options =>
+                {
+                    options.AllowAreas = true;
+                    options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
+                    options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
+                });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Identity/Account/Login";
+                options.LogoutPath = $"/Identity/Account/Logout";
+                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+            });
+
+            // using Microsoft.AspNetCore.Identity.UI.Services;
+            //services.AddSingleton<IEmailSender, EmailSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +77,7 @@ namespace Csi.WebApp
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
