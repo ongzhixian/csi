@@ -1,10 +1,145 @@
 # dotnet-cli
 
+## Create global.json file to set the version of .NET Core SDK to use
+
+dotnet new globaljson --sdk-version 2.1.603
+
 ## Creation
 
 
-### Create new solutions
+### Create new solution
 
 ```
 dotnet new sln -n Csi
 ```
+
+## Create new website
+
+```
+dotnet new mvc -n Csi.WebApp
+```
+
+## Create new library
+
+```
+dotnet new classlib -n Csi.Models
+```
+
+
+### Adding project to solution
+
+Assumes the solution file is in the directory where the command is executed and
+that the project file is in a sub-directory call Csi.WebApp
+
+```
+dotnet sln Csi.sln add Csi.WebApp/Csi.WebApp.csproj
+```
+
+### Packages to install
+
+Because we a target .NET Core 2.1, we have to specify version
+
+```
+REM Required for dotnet aspnet-codegenerator
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 2.1.9
+
+REM Identity as a nuget package
+dotnet add package Microsoft.AspNetCore.Identity.UI --version 2.1.6
+
+dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore --version 2.1.6
+
+dotnet add package Microsoft.Extensions.Configuration --version 2.1.1
+dotnet add package Microsoft.Extensions.Configuration.Json --version 2.1.1
+
+REM Required for dotnet ef
+dotnet add package Microsoft.EntityFrameworkCore.Design
+
+REM Entity Framework Providers for Sqlite and MySql
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite --version 2.1.8
+dotnet add package MySql.Data.EntityFrameworkCore 
+
+- - - - - - - - - - - - -
+
+dotnet ef migrations add CreateIdentitySchema -c Csi.WebApp.Data.CsiDbContext
+dotnet ef database update -c Csi.WebApp.Data.CsiDbContext
+
+- - - - - - - - - - - - -
+
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite
+dotnet add package MySql.Data.EntityFrameworkCore
+dotnet add package Microsoft.AspNetCore.App
+dotnet add package Microsoft.AspNetCore.Authentication.Cookies 
+dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+dotnet add package Microsoft.AspNetCore.Mvc.NewtonsoftJson
+dotnet add package Microsoft.AspNetCore.Mvc
+?? dotnet add package Microsoft.AspNetCore.Razor.Design
+
+
+Microsoft.EntityFrameworkCore.Sqlite
+MySql.Data.EntityFrameworkCore
+Oracle.EntityFrameworkCore
+IBM.EntityFrameworkCore
+Npgsql.EntityFrameworkCore.PostgreSQL
+Microsoft.EntityFrameworkCore.InMemory
+
+
+```
+
+
+### Scafolding tool
+
+
+#### Install 
+
+```
+dotnet tool install -g dotnet-aspnet-codegenerator
+```
+
+#### List available code generators
+
+```
+dotnet aspnet-codegenerator
+```
+
+The above may show the following if you have the Microsoft.VisualStudio.Web.CodeGeneration.Design nuget package.
+
+Available generators:
+  area      : Generates an MVC Area.
+  controller: Generates a controller.
+  identity  : Generates an MVC Area with controllers and
+  razorpage : Generates RazorPage(s).
+  view      : Generates a view.
+
+Use `dotnet aspnet-codegenerator identity -h` to see help options for each generator
+
+
+#### Generating new controllers
+
+```
+dotnet aspnet-codegenerator controller -name HomeController --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+
+dotnet aspnet-codegenerator controller -name BlogsController -m Blog -dc BloggingContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+
+
+```
+
+#### Generating views
+
+```
+dotnet aspnet-codegenerator view Index Empty -udl -outDir Views/Home
+
+dotnet aspnet-codegenerator view _LoginPartial Empty -udl -outDir Views/Shared
+```
+
+#### Scaffolding identity pages
+
+After adding the nuget package Microsoft.AspNetCore.Identity.UI --version 2.1.6,
+you can add the default UI pages into the project by running the below:
+
+```
+dotnet aspnet-codegenerator identity --useDefaultUI
+```
+
+

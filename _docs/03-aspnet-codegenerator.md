@@ -36,7 +36,7 @@ After adding the nuget package `Microsoft.AspNetCore.Identity.UI`,
 you can add the default UI pages into the project by running the below:
 
 ```
-dotnet aspnet-codegenerator identity --useDefaultUI
+dotnet aspnet-codegenerator identity --useDefaultUI --dbContext CsiDbContext
 ```
 
 This will create the `Area/Identity` and other related artifacts.

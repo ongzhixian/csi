@@ -1,8 +1,11 @@
 # Entity Framework Core CLI
 
+ZX: Always create a dbcontext first!
 
-dotnet ef dbcontext info
+dotnet ef migrations add CreateIdentitySchema -c Csi.WebApp.Data.CsiDbContext
 
+
+##
 
 dotnet ef dbcontext scaffold
 
@@ -34,4 +37,6 @@ Options:
   --no-color                             Don't colorize output.
   --prefix-output                        Prefix output with level.
 
-dotnet ef dbcontext scaffold "name=CsiDatabase" MySql.Data.EntityFrameworkCore -d -c CsiDbContext
+```
+dotnet ef dbcontext scaffold "name=CsiDatabase" MySql.Data.EntityFrameworkCore -d -c CsiDbContext -o Data
+```
