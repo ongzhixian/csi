@@ -17,6 +17,7 @@ dotnet new sln -n Csi
 
 ```
 dotnet new mvc -n Csi.WebApp
+dotnet new mvc -n Csi.WebApp --auth Individual --use-browserlink true
 ```
 
 ## Create new library
