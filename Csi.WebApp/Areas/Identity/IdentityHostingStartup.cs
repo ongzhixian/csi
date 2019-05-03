@@ -1,5 +1,5 @@
 using System;
-using Csi.WebApp.Areas.Identity.Data;
+//using Csi.WebApp.Areas.Identity.Data;
 using Csi.WebApp.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -16,20 +16,12 @@ namespace Csi.WebApp.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<IdentityDataContext>(options =>
-                    // options.UseSqlServer(
-                    //     context.Configuration.GetConnectionString("IdentityDataContextConnection"))
+                services.AddDbContext<CsiDbContext>(options =>
                     options.UseMySQL("name=CsiDatabase")
-                    );
+                );
 
-                
-                // AddDefaultIdentity implies csi.AspNetUsers table
-                // services.AddDefaultIdentity<CsiUser>()
-                //     .AddEntityFrameworkStores<IdentityDataContext>();
-
-                services.AddIdentity<CsiUser, IdentityRole>()
-                    .AddEntityFrameworkStores<IdentityDataContext>()
-                    .AddDefaultTokenProviders();
+                services.AddDefaultIdentity<CsiUser>()
+                    .AddEntityFrameworkStores<CsiDbContext>();
             });
         }
     }
