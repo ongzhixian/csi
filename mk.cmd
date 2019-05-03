@@ -68,6 +68,9 @@ dotnet ef database update --context Csi.WebApp.Data.CsiDbContext
 dotnet ef migrations add CreateIdentityClaimSchema --context Csi.WebApp.Data.CsiDbContext
 dotnet ef database update --context Csi.WebApp.Data.CsiDbContext
 
+dotnet ef migrations add CorrectIdentityClaimSchema --context Csi.WebApp.Data.CsiDbContext
+dotnet ef database update --context Csi.WebApp.Data.CsiDbContext
+
 GOTO END
 
 REM END   PHASE 2
