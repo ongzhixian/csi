@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Microsoft.AspNetCore.Identity;
 
 namespace Csi.WebApp.Data
 {
@@ -15,8 +17,6 @@ namespace Csi.WebApp.Data
         {
         }
 
-        public virtual DbSet<CsiUsers> CsiUsers { get; set; }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -27,28 +27,37 @@ namespace Csi.WebApp.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<CsiUsers>(entity =>
-            {
-                entity.Property(e => e.Id)
-                    .IsUnicode(false)
-                    .ValueGeneratedNever();
+            base.OnModelCreating(modelBuilder);
 
-                entity.Property(e => e.ConcurrencyStamp).IsUnicode(false);
+            // ZX:  Added converters to resolve the folllowing error message.
+            //      Unable to cast object of type 'System.Boolean' to type 'System.Int16'
+            //      Later learnt that this is not the correct approach to handle this issue.
+            //      The issue here is really with the MySql provider.
+            //      When generating the SQL for the Identity class (CsiUser),
+            //      it (incorrectly) convert .NET bool type to short (Int16).
+            //      A much better approach maybe override these specific fields in 
+            //      CsiUser.cs class and add annotations specifying the data type:
+            //      [Column(TypeName = "bit(1)")]
 
-                entity.Property(e => e.Email).IsUnicode(false);
+            // modelBuilder.Entity<CsiUser>()
+            //     .Property(r => r.EmailConfirmed)
+            //     .HasConversion(new BoolToZeroOneConverter<Int16>());
+            // modelBuilder.Entity<CsiUser>()
+            //     .Property(r => r.PhoneNumberConfirmed)
+            //     .HasConversion(new BoolToZeroOneConverter<Int16>());
+            // modelBuilder.Entity<CsiUser>()
+            //     .Property(r => r.TwoFactorEnabled)
+            //     .HasConversion(new BoolToZeroOneConverter<Int16>());
+            // modelBuilder.Entity<CsiUser>()
+            //     .Property(r => r.LockoutEnabled)
+            //     .HasConversion(new BoolToZeroOneConverter<Int16>());
 
-                entity.Property(e => e.NormalizedEmail).IsUnicode(false);
-
-                entity.Property(e => e.NormalizedUserName).IsUnicode(false);
-
-                entity.Property(e => e.PasswordHash).IsUnicode(false);
-
-                entity.Property(e => e.PhoneNumber).IsUnicode(false);
-
-                entity.Property(e => e.SecurityStamp).IsUnicode(false);
-
-                entity.Property(e => e.UserName).IsUnicode(false);
-            });
         }
-    }
+
+        public virtual DbSet<CsiUser> CsiUsers { get; set; }
+
+        public virtual DbSet<IdentityUserClaim<string>> IdentityUserClaims { get; set; }
+
+
+}
 }
