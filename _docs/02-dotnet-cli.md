@@ -6,33 +6,34 @@ dotnet new globaljson --sdk-version 2.1.603
 
 ## Creation
 
-
 ### Create new solution
 
-```
+```dotnet
 dotnet new sln -n Csi
 ```
 
 ## Create new website
 
-```
+```dotnet
 dotnet new mvc -n Csi.WebApp
+
+-- Adds authentication and browserlink
 dotnet new mvc -n Csi.WebApp --auth Individual --use-browserlink true
+
 ```
 
 ## Create new library
 
-```
+```dotnet
 dotnet new classlib -n Csi.Models
 ```
-
 
 ### Adding project to solution
 
 Assumes the solution file is in the directory where the command is executed and
 that the project file is in a sub-directory call Csi.WebApp
 
-```
+```dotnet
 dotnet sln Csi.sln add Csi.WebApp/Csi.WebApp.csproj
 ```
 
@@ -40,7 +41,7 @@ dotnet sln Csi.sln add Csi.WebApp/Csi.WebApp.csproj
 
 Because we a target .NET Core 2.1, we have to specify version
 
-```
+```dotnet
 REM Required for dotnet aspnet-codegenerator
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 2.1.9
 
@@ -88,19 +89,17 @@ Microsoft.EntityFrameworkCore.InMemory
 
 ```
 
+### Scaffolding tool
 
-### Scafolding tool
+#### Install
 
-
-#### Install 
-
-```
+```dotnet
 dotnet tool install -g dotnet-aspnet-codegenerator
 ```
 
 #### List available code generators
 
-```
+```dotnet
 dotnet aspnet-codegenerator
 ```
 
@@ -115,10 +114,9 @@ Available generators:
 
 Use `dotnet aspnet-codegenerator identity -h` to see help options for each generator
 
-
 #### Generating new controllers
 
-```
+```dotnet
 dotnet aspnet-codegenerator controller -name HomeController --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
 
 dotnet aspnet-codegenerator controller -name BlogsController -m Blog -dc BloggingContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
@@ -128,7 +126,7 @@ dotnet aspnet-codegenerator controller -name BlogsController -m Blog -dc Bloggin
 
 #### Generating views
 
-```
+```dotnet
 dotnet aspnet-codegenerator view Index Empty -udl -outDir Views/Home
 
 dotnet aspnet-codegenerator view _LoginPartial Empty -udl -outDir Views/Shared
@@ -139,8 +137,11 @@ dotnet aspnet-codegenerator view _LoginPartial Empty -udl -outDir Views/Shared
 After adding the nuget package Microsoft.AspNetCore.Identity.UI --version 2.1.6,
 you can add the default UI pages into the project by running the below:
 
-```
+```dotnet
 dotnet aspnet-codegenerator identity --useDefaultUI
 ```
 
+## Reference
 
+* Other tools
+  https://docs.microsoft.com/en-us/dotnet/core/tools/?tabs=netcore2x
