@@ -12,7 +12,11 @@ ZX: VS2017 does not seem to play well with this file.
     No errors or warnings are displayed when loading projects.
     BUT if you try to add project to the solution file, you get
     a dialog that states:
-    Project file is incomplete. Expected imports are missing.
+    """
+	Project file is incomplete. Expected imports are missing.
+    """
+    The quick solution to simply rename the global.json to something else
+    before loading/adding the project to the solution.
 
 ## Creation
 
