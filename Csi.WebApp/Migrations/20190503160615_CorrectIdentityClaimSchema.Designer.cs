@@ -3,14 +3,16 @@ using System;
 using Csi.WebApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Csi.WebApp.Migrations
 {
     [DbContext(typeof(CsiDbContext))]
-    partial class CsiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190503160615_CorrectIdentityClaimSchema")]
+    partial class CorrectIdentityClaimSchema
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
