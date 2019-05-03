@@ -2,7 +2,17 @@
 
 ## Create global.json file to set the version of .NET Core SDK to use
 
+```dotnet
 dotnet new globaljson --sdk-version 2.1.603
+```
+
+ZX: VS2017 does not seem to play well with this file.
+    If you have this file in the root, you will not be able 
+    to load projects or add projects into solution file.
+    No errors or warnings are displayed when loading projects.
+    BUT if you try to add project to the solution file, you get
+    a dialog that states:
+    Project file is incomplete. Expected imports are missing.
 
 ## Creation
 
