@@ -17,8 +17,11 @@ namespace Csi.WebApp
             CreateWebHostBuilder(args).Build().Run();
         }
 
+        // ZX: Reference to what ASP.NET Core Web Host does:
+        // https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/web-host?view=aspnetcore-2.1
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+                .UseStartup<Startup>()
+                ;
     }
 }
