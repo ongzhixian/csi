@@ -1,5 +1,6 @@
-GOTO PHASE2
+GOTO PHASE1
 
+REM NOTE: Remember to start with an empty database with only __EFMigrationsHistory
 REM ================================================================================
 REM START PHASE 1
 :PHASE1
@@ -10,8 +11,8 @@ RMDIR /S /Q Csi.WebApp
 dotnet sln Csi.sln remove Csi.WebApp/Csi.WebApp.csproj
 
 :MAKE_SITE
-ECHO MAKE NEW MVC SITE
-dotnet new mvc -n Csi.WebApp
+ECHO MAKE NEW MVC SITE --auth Individual 
+dotnet new mvc -n Csi.WebApp --use-browserlink true
 
 :ADD_PACKAGE
 cd Csi.WebApp
@@ -51,8 +52,21 @@ cd ..
 
 :ADD_IDENTITY
 cd Csi.WebApp
-dotnet aspnet-codegenerator identity --useDefaultUI --userClass Csi.WebApp.Data.CsiUser
+dotnet aspnet-codegenerator identity 
+dotnet aspnet-codegenerator identity -dc Csi.WebApp.Data.ApplicationDbContext -u CsiUser -f
+dotnet aspnet-codegenerator identity -u Csi.WebApp.Data.CsiUser -f
+REM--useDefaultUI --userClass Csi.WebApp.Data.CsiUser
 cd ..
+
+:ADD_EFTABLES
+dotnet ef dbcontext list
+dotnet ef dbcontext info --context Csi.WebApp.Data.CsiDbContext
+
+dotnet ef migrations add CreateIdentitySchema --context Csi.WebApp.Data.CsiDbContext
+dotnet ef database update --context Csi.WebApp.Data.CsiDbContext
+
+dotnet ef migrations add CreateIdentityClaimSchema --context Csi.WebApp.Data.CsiDbContext
+dotnet ef database update --context Csi.WebApp.Data.CsiDbContext
 
 GOTO END
 
