@@ -21,6 +21,10 @@ namespace Csi.WebApp
         // https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/web-host?view=aspnetcore-2.1
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    config.AddJsonFile("runtime-settings.json", optional: true);
+                })
                 .UseStartup<Startup>()
                 ;
     }
