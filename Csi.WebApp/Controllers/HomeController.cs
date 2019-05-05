@@ -5,13 +5,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Csi.WebApp.Models;
+using Microsoft.Extensions.Logging;
 
 namespace Csi.WebApp.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ILogger logger;
+
+        public HomeController(ILogger<HomeController> logger)
+        {
+            this.logger = logger;
+        }
+
         public IActionResult Index()
         {
+            this.logger.LogInformation("Hello world from INdex()#################################################################");
             return View();
         }
 
