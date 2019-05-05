@@ -24,6 +24,10 @@ dotnet add package Microsoft.EntityFrameworkCore.Sqlite --version 2.1.8
 dotnet add package Microsoft.AspNetCore.Identity.UI --version 2.1.6
 dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore --version 2.1.6
 dotnet add package MySql.Data.EntityFrameworkCore 
+dotnet add package Serilog.AspNetCore --version 2.1.1
+dotnet add package Serilog.Sinks.Console --version 3.1.1
+dotnet add package Serilog.Settings.Configuration --version 3.0.1
+dotnet add package Serilog.Sinks.RollingFile --version 3.3.0
 cd ..
 
 :INIT_BUILD
