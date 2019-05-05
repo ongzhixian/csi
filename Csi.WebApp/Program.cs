@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace Csi.WebApp
 {
@@ -25,7 +26,15 @@ namespace Csi.WebApp
                 {
                     config.AddJsonFile("runtime-settings.json", optional: true);
                 })
+                .ConfigureLogging((hostingContext, config) =>
+                {
+                    Log.Logger = new LoggerConfiguration()
+                        .ReadFrom.Configuration(hostingContext.Configuration)
+                        .CreateLogger();
+                })
                 .UseStartup<Startup>()
+                //.UseSerilog((hostingContext, loggerConfiguration) => 
+                //    loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration))
                 ;
     }
 }
