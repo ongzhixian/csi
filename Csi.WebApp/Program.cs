@@ -26,7 +26,6 @@ namespace Csi.WebApp
                 {
                     config.AddJsonFile("runtime-settings.json", optional: true);
                 })
-            .UseStartup<Startup>()
                 .ConfigureLogging((hostingContext, config) =>
                 {
                     // Uncomment the below to remove the default loggers
@@ -46,6 +45,7 @@ namespace Csi.WebApp
                     //        .CreateLogger()
                     //);
                 })
+                .UseStartup<Startup>()
                 // ZX:  This is an alternative way to add logging using Serilog
                 //      For some strange reason, using this makes LogTrace available :-)
                 //      Not sure why. Give up for now :-(
