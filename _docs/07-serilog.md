@@ -38,3 +38,16 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration))
         ;
 ```
+
+
+Level       Usage
+Verbose     Verbose is the noisiest level, rarely (if ever) enabled for a production app.
+            This is Serilog's equivalent of Trace level (not to be confused with TraceListener)
+Debug	    Debug is used for internal system events that are not necessarily observable from the outside, 
+            but useful when determining how something happened.
+Information Information events describe things happening in the system that correspond to its responsibilities and functions.
+            Generally these are the observable actions the system can perform.
+Warning	    When service is degraded, endangered, or may be behaving outside of its expected parameters, 
+            Warning level events are used.
+Error	    When functionality is unavailable or expectations broken, an Error event is used.
+Fatal	    The most critical level, Fatal events demand immediate attention.
