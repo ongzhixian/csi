@@ -20,7 +20,27 @@ namespace Csi.WebApp.Controllers
 
         public IActionResult Index()
         {
-            this.logger.LogInformation("Hello world from INdex()#################################################################");
+            this.logger.LogInformation("##### Hello world from Index() [INF]");
+            this.logger.LogCritical("##### Hello world from Index() [CRT]");
+            this.logger.LogDebug("##### Hello world from Index() [DBG]");
+            this.logger.LogError("##### Hello world from Index() [ERR]");
+            this.logger.LogWarning("##### Hello world from Index() [WRN]");
+            this.logger.LogTrace("##### Hello trace message");
+
+            
+            using (Serilog.Context.LogContext.PushProperty("A", 1))
+            {
+                this.logger.LogInformation("Carries property A = 1");
+
+                using (Serilog.Context.LogContext.PushProperty("A", 2))
+                using (Serilog.Context.LogContext.PushProperty("B", 1))
+                {
+                    this.logger.LogInformation("Carries A = 2 and B = 1");
+                }
+
+                this.logger.LogInformation("Carries property A = 1, again");
+            }
+
             return View();
         }
 
