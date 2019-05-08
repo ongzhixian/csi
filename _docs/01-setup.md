@@ -30,3 +30,47 @@ File name: 'Microsoft.Build, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b
 See:
 https://github.com/OmniSharp/omnisharp-vscode/issues/1727
 https://github.com/OmniSharp/omnisharp-roslyn/wiki/Configuration-Options#global-omnisharpjson
+
+## dev-certs
+
+dotnet dev-certs https --trust
+
+ZX: On Windows, this will install a "localhost" cert to Personal cert store 
+    Under Personal > Certificates
+
+An example of cert details:
+
+```
+Subject : localhost
+Issuer : Self Issued
+Time Validity : Friday, September 14, 2018 through Saturday, September 14, 2019
+Serial Number : 40837A55 43BDF4BB
+Thumbprint (sha1) : D6B16AD6 2545A93A 57AD8656 A6D9A6B2 269F29FA
+Thumbprint (md5) : 211216D8 F5DE79CF 0AD6FA7D 43BD5138
+```
+
+In case, you receive the following exception message while running application, 
+try removing the cert with:
+
+dotnet dev-certs https --clean
+
+Before installing the cert again.
+
+```
+[2019-05-08T22:07:24.3785541+08:00 DBG] Failed to authenticate HTTPS connection. HttpsConnectionAdapter
+System.Security.Authentication.AuthenticationException: Authentication failed, see inner exception. ---> System.ComponentModel.Win32Exception: An unknown error occurred while processing the certificate
+   --- End of inner exception stack trace ---
+   at System.Net.Security.SslState.StartSendAuthResetSignal(ProtocolToken message, AsyncProtocolRequest asyncRequest, ExceptionDispatchInfo exception)
+   at System.Net.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ProcessReceivedBlob(Byte[] buffer, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.PartialFrameCallback(AsyncProtocolRequest asyncRequest)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Security.SslState.ThrowIfExceptional()
+   at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+```
