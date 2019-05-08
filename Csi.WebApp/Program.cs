@@ -26,15 +26,33 @@ namespace Csi.WebApp
                 {
                     config.AddJsonFile("runtime-settings.json", optional: true);
                 })
+            .UseStartup<Startup>()
                 .ConfigureLogging((hostingContext, config) =>
                 {
-                    Log.Logger = new LoggerConfiguration()
-                        .ReadFrom.Configuration(hostingContext.Configuration)
-                        .CreateLogger();
+                    // Uncomment the below to remove the default loggers
+                    //config.ClearProviders();
+                    // The following are default loggers
+                    //config.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+                    //config.AddConsole();
+                    //config.AddDebug();
+
+                    // ZX:  For some strange reason, LogTrace is not available using this method to add Serilog.
+                    //      Not sure why. Give up for now :-(
+                    //config.AddSerilog
+                    //(
+                    //    new LoggerConfiguration()
+                    //        .ReadFrom.ConfigurationSection(hostingContext.Configuration.GetSection("Serilog"))
+                    //        .Enrich.FromLogContext()
+                    //        .CreateLogger()
+                    //);
                 })
-                .UseStartup<Startup>()
-                //.UseSerilog((hostingContext, loggerConfiguration) => 
-                //    loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration))
+                // ZX:  This is an alternative way to add logging using Serilog
+                //      For some strange reason, using this makes LogTrace available :-)
+                //      Not sure why. Give up for now :-(
+                .UseSerilog((hostingContext, loggerConfiguration) =>
+                    loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration)
+                    .Enrich.FromLogContext()
+                )
                 ;
     }
 }
