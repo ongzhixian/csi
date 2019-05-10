@@ -26,6 +26,14 @@ File name: 'Microsoft.Build, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b
    at OmniSharp.MSBuild.ProjectFile.ProjectFileInfo.Load(String filePath, ProjectIdInfo projectIdInfo, ProjectLoader loader)
    at OmniSharp.MSBuild.ProjectManager.LoadOrReloadProject(String projectFilePath, Func`1 loader) in C:\projects\omnisharp-roslyn\src\OmniSharp.MSBuild\ProjectManager.cs:line 306
 
+To fix in VS Code, add the following to VS Code's "settings.json":
+
+```
+"omnisharp.path": "1.32.3-beta.9"
+```
+
+See:
+https://github.com/OmniSharp/omnisharp-roslyn/issues/1094#issuecomment-420355477
 
 See:
 https://github.com/OmniSharp/omnisharp-vscode/issues/1727
