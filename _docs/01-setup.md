@@ -32,6 +32,12 @@ To fix in VS Code, add the following to VS Code's "settings.json":
 "omnisharp.path": "1.32.3-beta.9"
 ```
 
+The path that the above setting is referring to can be found at:
+
+```
+C:\Users\zhixian\.vscode\extensions\ms-vscode.csharp-1.19.1\.omnisharp
+```
+
 See:
 https://github.com/OmniSharp/omnisharp-roslyn/issues/1094#issuecomment-420355477
 
