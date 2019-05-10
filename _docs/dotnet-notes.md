@@ -13,6 +13,10 @@ PerfView
 https://github.com/Microsoft/perfview/blob/master/documentation/Downloading.md
 https://blogs.msdn.microsoft.com/vancem/tag/perfview/
 
+MiniProfiler
+https://miniprofiler.com/dotnet/AspDotNetCore
+https://miniprofiler.com/dotnet/
+
 LoggerMessage
 https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/loggermessage?view=aspnetcore-2.1
 
