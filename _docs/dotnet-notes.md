@@ -25,3 +25,7 @@ https://www.ben-morris.com/using-asynchronous-log4net-appenders-for-high-perform
 
 Logging
 https://microsoft.github.io/code-with-engineering-playbook/Engineering/DevOpsLoggingDetailsCSharp.html
+
+Engineering guidelines!!!
+https://github.com/aspnet/AspNetCore/wiki/Engineering-guidelines#unit-tests-and-functional-tests
+
