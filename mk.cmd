@@ -13,6 +13,9 @@ dotnet sln Csi.sln remove Csi.WebApp/Csi.WebApp.csproj
 :MAKE_SITE
 ECHO MAKE NEW MVC SITE --auth Individual 
 dotnet new mvc -n Csi.WebApp --use-browserlink true
+ECHO MAKE SERVICES
+dotnet new classlib -n Csi.Services
+
 
 :ADD_PACKAGE
 cd Csi.WebApp
@@ -28,6 +31,7 @@ dotnet add package Serilog.AspNetCore --version 2.1.1
 dotnet add package Serilog.Sinks.Console --version 3.1.1
 dotnet add package Serilog.Settings.Configuration --version 3.0.1
 dotnet add package Serilog.Sinks.RollingFile --version 3.3.0
+dotnet add package Microsoft.CodeCoverage --version 16.1.0
 cd ..
 
 :INIT_BUILD
