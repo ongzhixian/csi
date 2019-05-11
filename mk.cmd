@@ -35,6 +35,11 @@ dotnet add package Serilog.Sinks.RollingFile --version 3.3.0
 dotnet add package Microsoft.CodeCoverage --version 16.1.0
 cd ..
 
+cd Csi.Data
+dotnet add package System.ComponentModel.Annotations --version 4.4.0
+cd ..
+
+
 :INIT_BUILD
 cd Csi.WebApp
 dotnet restore
