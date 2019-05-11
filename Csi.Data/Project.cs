@@ -8,20 +8,20 @@ namespace Csi.Data
     public class Project
     {
         [Key]
-        public Guid Id {get;set;}
+        public Guid Id { get; set; }
 
         [DataType(DataType.Text)]
-        public string Name {get;set;}
+        public string Name { get; set; }
 
         [DataType(DataType.DateTime)]
-        public DateTime RegisteredDate { get;set;}
+        public DateTime RegisteredDate { get; set; }
 
         // Navigation
 
-        public Guid OrganizationId {get;set;}
+        public Guid OrganizationId { get; set; }
 
         [ForeignKey("OrganizationId")]
-        public Organization Organization {get;set;}
+        public Organization Organization { get; set; }
 
     }
 }
