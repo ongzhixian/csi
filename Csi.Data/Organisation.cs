@@ -1,9 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Csi.Data
 {
-    public class Organization
+    [Table("Organization")]
+    public class Organization 
     {
         [Key]
         public Guid Id { get; set; }
@@ -15,6 +17,8 @@ namespace Csi.Data
         [Required]
         [DataType(DataType.DateTime)]
         public DateTime RegisteredDate { get; set; }
+
+        
 
     }
 }
