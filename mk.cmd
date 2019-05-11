@@ -15,6 +15,7 @@ ECHO MAKE NEW MVC SITE --auth Individual
 dotnet new mvc -n Csi.WebApp --use-browserlink true
 ECHO MAKE SERVICES
 dotnet new classlib -n Csi.Services
+dotnet new classlib -n Csi.Data
 
 
 :ADD_PACKAGE
