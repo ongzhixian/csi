@@ -329,3 +329,9 @@ ASALocalRun/
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
 Csi.WebApp/runtime-settings.json
+/_global.json
+
+# Ignore diagnostics and Output
+Csi.Data.Tests/diagnostics.log
+Csi.Data.Tests/diagnostics.host.*.log
+Csi.Data.Tests/Output/*
