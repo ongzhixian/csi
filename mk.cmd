@@ -16,6 +16,8 @@ dotnet new mvc -n Csi.WebApp --use-browserlink true
 ECHO MAKE SERVICES
 dotnet new classlib -n Csi.Services
 dotnet new classlib -n Csi.Data
+ECHO MAKE TEST PROJECTS
+dotnet new mstest -n Csi.Data.Tests
 
 
 :ADD_PACKAGE
