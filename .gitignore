@@ -335,3 +335,6 @@ Csi.WebApp/runtime-settings.json
 Csi.Data.Tests/diagnostics.log
 Csi.Data.Tests/diagnostics.host.*.log
 Csi.Data.Tests/Output/*
+
+# Ignore logs in general
+*.log
