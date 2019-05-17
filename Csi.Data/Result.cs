@@ -1,3 +1,5 @@
+using System;
+
 namespace Csi.Data
 {
     public class Result
