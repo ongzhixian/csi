@@ -87,7 +87,16 @@ dotnet ef database update --context Csi.WebApp.Data.CsiDbContext
 dotnet ef migrations add CorrectIdentityClaimSchema --context Csi.WebApp.Data.CsiDbContext
 dotnet ef database update --context Csi.WebApp.Data.CsiDbContext
 
+
+:ADD_SLN
+dotnet sln Csi.sln add Csi.Data\Csi.Data.csproj
+dotnet sln Csi.sln add Csi.Data.Tests\Csi.Data.Tests.csproj
+dotnet sln Csi.sln add Csi.Services\Csi.Services.csproj
+dotnet sln Csi.sln add Csi.WebApp\Csi.WebApp.csproj
+
 GOTO END
+
+
 
 REM END   PHASE 2
 
