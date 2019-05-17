@@ -103,6 +103,14 @@ Microsoft.EntityFrameworkCore.InMemory
 
 ```
 
+
+## Add reference to a project 
+
+```
+dotnet add Csi.Data.Tests.csproj reference ..\Csi.Data\Csi.Data.csproj
+```
+
+
 ### Scaffolding tool
 
 #### Install
