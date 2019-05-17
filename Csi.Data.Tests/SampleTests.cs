@@ -4,10 +4,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting.Logging;
 namespace Csi.Data.Tests
 {
     [TestClass]
-    public class EntityTests
+    public class SampleTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void OutputTest()
         {
             // Arrange
             // Act
