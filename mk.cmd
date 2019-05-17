@@ -13,12 +13,16 @@ dotnet sln Csi.sln remove Csi.WebApp/Csi.WebApp.csproj
 :MAKE_SITE
 ECHO MAKE NEW MVC SITE --auth Individual 
 dotnet new mvc -n Csi.WebApp --use-browserlink true
+
 ECHO MAKE SERVICES
 dotnet new classlib -n Csi.Services
 dotnet new classlib -n Csi.Data
 ECHO MAKE TEST PROJECTS
+dotnet new mstest -n Csi.Services.Tests
 dotnet new mstest -n Csi.Data.Tests
-
+:ADD_PROJ_REF
+dotnet add Csi.Data.Tests\Csi.Data.Tests.csproj reference Csi.Data\Csi.Data.csproj
+dotnet add Csi.Services.Tests\Csi.Services.Tests.csproj reference Csi.Services\Csi.Services.csproj
 
 :ADD_PACKAGE
 cd Csi.WebApp
@@ -93,6 +97,8 @@ dotnet sln Csi.sln add Csi.Data\Csi.Data.csproj
 dotnet sln Csi.sln add Csi.Data.Tests\Csi.Data.Tests.csproj
 dotnet sln Csi.sln add Csi.Services\Csi.Services.csproj
 dotnet sln Csi.sln add Csi.WebApp\Csi.WebApp.csproj
+
+
 
 GOTO END
 
