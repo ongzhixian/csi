@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Csi.Data
 {
+    [Obsolete]
     [Table("Organization")]
     public class Organization 
     {

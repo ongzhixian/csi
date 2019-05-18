@@ -2,6 +2,7 @@ using System;
 
 namespace Csi.Data
 {
+    [Obsolete]
     public class Result
     {
         public bool Success { get; set; }
