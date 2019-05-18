@@ -30,14 +30,35 @@ dotnet add package coverlet.msbuild
 
 ## Exclusion
 
-Exclude using attributes
+### Exclude using attributes
+
+```
+dotnet test /p:CollectCoverage=true /p:ExcludeByAttribute="Obsolete"
+```
+
+It would have been more preferable to exclude code with 
+GeneratedCodeAttribute and CompilerGeneratedAttribute as with the following parameter.
+But these 2 attributes aren't in available by default.
+Which means it is almost always more preferable to exclude using ObsoleteAttribute 
+if you are using exclusion by attribute strategy.
+
+```
 dotnet test /p:CollectCoverage=true /p:ExcludeByAttribute="Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute"
+```
 
-Exclude using file
+
+### Exclude using file
+
+```
 dotnet test /p:CollectCoverage=true /p:ExcludeByFile=\"../dir1/class1.cs,../dir2/*.cs,../dir3/**/*.cs\"
+```
 
-Exclude using filters
+### Exclude using filters
+
+```
 dotnet test /p:CollectCoverage=true /p:Exclude="[coverlet.*]Coverlet.Core.Coverage"
+```
+
 
 ## Reference
 https://github.com/tonerdo/coverlet
