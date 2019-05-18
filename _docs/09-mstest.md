@@ -3,8 +3,11 @@
 tldr;
 
 ```
-dotnet test --logger:console;verbosity=detailed --diag Diagnostics/diagnostics.log;tracelevel=verbose --output Output --results-directory Results --configuration debug /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=CodeCoverage/coverlet.xml
+dotnet test --logger:console;verbosity=detailed --diag Diagnostics/diagnostics.log;tracelevel=verbose --output Output --results-directory Results --configuration debug /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=CodeCoverage/coverlet.xml /p:ExcludeByAttribute="Obsolete"
 ```
+
+
+
 
 --logger:console[;verbosity=<Defaults to "minimal">]
 Argument "verbosity" define the verbosity level of console logger. 
