@@ -98,3 +98,6 @@ https://github.com/Microsoft/vstest-docs/blob/master/docs/analyze.md
 
 Unit testing best practices with .NET Core and .NET Standard
 https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices
+
+MSTest Unit Testing Framework Cheat Sheet
+https://www.automatetheplanet.com/mstest-cheat-sheet/
