@@ -99,7 +99,8 @@ Oracle.EntityFrameworkCore
 IBM.EntityFrameworkCore
 Npgsql.EntityFrameworkCore.PostgreSQL
 Microsoft.EntityFrameworkCore.InMemory
-
+dotnet add package Microsoft.Extensions.Configuration
+dotnet add package Microsoft.Extensions.Configuration.Json
 
 ```
 
