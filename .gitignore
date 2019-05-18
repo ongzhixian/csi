@@ -332,12 +332,9 @@ Csi.WebApp/runtime-settings.json
 /_global.json
 
 # Ignore diagnostics and Output
-Csi.Data.Tests/diagnostics.log
-Csi.Data.Tests/diagnostics.host.*.log
-Csi.Data.Tests/Output/*
-
-# Ignore all folders name Output
 **/Output/*
+**/Diagnostics/*
+**/CodeCoverage/*
 
 # Ignore logs in general
 *.log
