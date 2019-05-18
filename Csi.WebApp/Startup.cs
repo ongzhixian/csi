@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -7,8 +8,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 
 namespace Csi.WebApp
 {
@@ -51,10 +54,43 @@ namespace Csi.WebApp
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            // ZX:  Initially was thinking of using one of the following options to handle
+            //      Let's Encrypt acme-challenge folders, but it didn't work out.
+            //      The problem is that the acme-challenge file will be treated as a
+            //      unknown file type by Kestrel and that's maybe a security concern.
+            //      See: https://docs.microsoft.com/en-us/aspnet/core/fundamentals/static-files?view=aspnetcore-2.1
+            // app.UseStaticFiles(new StaticFileOptions
+            // {
+            //     FileProvider = new PhysicalFileProvider(
+            //         Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", ".well-known", "acme-challenge")),
+            //     RequestPath = "/.well-known/acme-challenge"
+            // });
+            // app.UseFileServer(new FileServerOptions
+            // {
+            //     FileProvider = new PhysicalFileProvider(
+            //         Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", ".well-known", "acme-challenge")),
+            //     RequestPath = "/.well-known/acme-challenge",
+            //     EnableDirectoryBrowsing = true
+            // });
+
             app.UseCookiePolicy();
 
             app.UseAuthentication();
 
+            // Setup ad-hoc routing that by-passes MVC processing 
+            // app.UseRouter should be defined before app.UseMvc()
+            app.UseRouter(r =>
+            {
+                // Handle Lets Encrypt acme-challenge
+                r.MapGet(".well-known/acme-challenge/{id}", async (request, response, routeData) =>
+                {
+                    var id = routeData.Values["id"] as string;
+                    var file = Path.Combine(env.WebRootPath, ".well-known","acme-challenge", id);
+                    await response.SendFileAsync(file);
+                });
+            });
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
