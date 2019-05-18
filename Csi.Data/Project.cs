@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Csi.Data
 {
     [Table("Project")]
-    public class Project
+    public class Project : BaseEntity
     {
         [Key]
         public Guid Id { get; set; }

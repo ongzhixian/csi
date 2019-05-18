@@ -8,6 +8,7 @@ namespace Csi.Data
     {
         T Id { get; set; }
     }
+
     public abstract class Entity<T> where T : struct
     {
         public abstract T Id { get; set; }
@@ -18,6 +19,7 @@ namespace Csi.Data
         public abstract Guid Id { get; set; }
     }
 
-
-
+    public class BaseEntity
+    {
+    }
 }
