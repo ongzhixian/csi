@@ -52,7 +52,12 @@ namespace Csi.WebApp
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            // ZX:  Disabled because of the way MY Ubuntu server is setup.
+            //      Cloud -> HAProxy -> Nginx -> Kestrel
+            //      I want the site to handle non-HTTPS traffic as well for testing purposes.
+            //      (for cases where 3rd party API don't understand HTTPS)
+            // app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             // ZX:  Initially was thinking of using one of the following options to handle
