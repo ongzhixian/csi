@@ -74,6 +74,8 @@ REM Entity Framework Providers for Sqlite and MySql
 dotnet add package Microsoft.EntityFrameworkCore.Sqlite --version 2.1.8
 dotnet add package MySql.Data.EntityFrameworkCore 
 
+dotnet add package BuildBundlerMinifier
+
 - - - - - - - - - - - - -
 
 dotnet ef migrations add CreateIdentitySchema -c Csi.WebApp.Data.CsiDbContext
