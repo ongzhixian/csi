@@ -10,11 +10,11 @@ using Csi.WebApp.Data;
 
 namespace Csi.WebApp.Controllers
 {
-    public class Project : Controller
+    public class ProjectController : Controller
     {
         private readonly CsiDbContext _context;
 
-        public Project(CsiDbContext context)
+        public ProjectController(CsiDbContext context)
         {
             _context = context;
         }

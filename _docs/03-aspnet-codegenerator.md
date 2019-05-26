@@ -68,7 +68,7 @@ Generator Options:
   --controllerNamespace|-namespace    : Specify the name of the namespace to use for the generated controller
 
 Example call:
-dotnet aspnet-codegenerator controller --controllerName Csi.WebApp.Project --model Csi.Data.Project --dataContext Csi.WebApp.Data.CsiDbContext --referenceScriptLibraries
+dotnet aspnet-codegenerator controller --controllerName Csi.WebApp.ProjectController --model Csi.Data.Project --dataContext Csi.WebApp.Data.CsiDbContext --referenceScriptLibraries
 
 ## Help: identity
 
