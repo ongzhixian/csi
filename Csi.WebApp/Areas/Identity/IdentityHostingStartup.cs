@@ -16,9 +16,16 @@ namespace Csi.WebApp.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<CsiDbContext>(options =>
-                    options.UseMySQL("name=CsiDatabase")
-                );
+
+                // ZX:  For some unknown reason, adding DbContext here will break the
+                //      dotnet aspnet-codegenerator tool
+                //      Will receive the following error message:
+                //      More than one DbContext named 'Csi.WebApp.Data.CsiDbContext' was found. 
+                //      Specify which one to use by providing its fully qualified name using its exact case.
+                //      So opting to move this code Startup.cs instead
+                // services.AddDbContext<CsiDbContext>(options =>
+                //     options.UseMySQL("name=CsiDatabase")
+                // );
 
                 services.AddDefaultIdentity<CsiUser>()
                     .AddEntityFrameworkStores<CsiDbContext>();
