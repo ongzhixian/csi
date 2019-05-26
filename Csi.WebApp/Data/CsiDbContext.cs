@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.AspNetCore.Identity;
+using Csi.Data;
 
 namespace Csi.WebApp.Data
 {
@@ -57,6 +58,8 @@ namespace Csi.WebApp.Data
         public virtual DbSet<CsiUser> CsiUsers { get; set; }
 
         public virtual DbSet<IdentityUserClaim<string>> IdentityUserClaims { get; set; }
+
+        public DbSet<Csi.Data.Project> Project { get; set; }
 
 
 }
