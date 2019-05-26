@@ -111,6 +111,9 @@ dotnet add package Microsoft.Extensions.Configuration.Json
 
 ```
 dotnet add Csi.Data.Tests.csproj reference ..\Csi.Data\Csi.Data.csproj
+
+dotnet add Csi.WebApp.csproj reference ..\Csi.Data\Csi.Data.csproj
+dotnet add Csi.WebApp.csproj reference ..\Csi.Services\Csi.Services.csproj
 ```
 
 
