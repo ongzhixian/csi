@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Csi.Data;
 using Csi.WebApp.Data;
 
-namespace Csi.WebApp
+namespace Csi.WebApp.Controllers
 {
     public class Project : Controller
     {
