@@ -28,6 +28,10 @@ body {
     margin: 15px;
 }
 
+.page.content {
+    margin-top:2em;
+}
+
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */
@@ -35,3 +39,4 @@ body {
         display: none;
     }
 }
+
