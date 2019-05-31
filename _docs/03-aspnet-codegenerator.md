@@ -1,5 +1,7 @@
 # aspnet-codegenerator
 
+ZX: Maybe its faster to copy and paste.
+
 ## Install 
 
 ```
@@ -68,7 +70,11 @@ Generator Options:
   --controllerNamespace|-namespace    : Specify the name of the namespace to use for the generated controller
 
 Example call:
+
 dotnet aspnet-codegenerator controller --controllerName Csi.WebApp.ProjectController --model Csi.Data.Project --dataContext Csi.WebApp.Data.CsiDbContext --referenceScriptLibraries
+
+dotnet aspnet-codegenerator controller --controllerName HomeController --controllerNamespace Csi.WebApp.Sample --referenceScriptLibraries
+
 
 ## Help: identity
 
@@ -126,3 +132,5 @@ Generator Options:
   --relativeFolderPath|-outDir        : Specify the relative output folder path from project where the file needs to be generated, if not specified, file will be generated in the project folder
   --controllerNamespace|-namespace    : Specify the name of the namespace to use for the generated controller
   --partialView|-partial              : Generate a partial view, other layout options (-l and -udl) are ignored if this is specified
+
+dotnet aspnet-codegenerator view Index Empty --controllerNamespace Csi.WebApp.Sample --relativeFolderPath Areas/Sample/Views/Home
