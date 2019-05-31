@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Csi.WebApp.Sample
+namespace Csi.WebApp.Areas.Sample
 {
     [Area("Sample")]
     public class HomeController : Controller
