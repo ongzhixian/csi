@@ -1,1 +1,0 @@
-Images for Skeleton-2.0.4
