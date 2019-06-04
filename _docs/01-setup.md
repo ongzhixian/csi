@@ -72,6 +72,8 @@ ZX: It maybe desirable to set an environment variable to the underlying SDK path
     SET MSBuildSDKsPath=%DOTNET_SDK%\2.1.603\Sdks
 ```
 
+ZX: Not sure if MSBuildSDKsPath will also (conveniently?) fix the `omnisharp.path` issue mentioned above.
+
 ## dev-certs
 
 dotnet dev-certs https --trust
