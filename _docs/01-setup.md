@@ -10,7 +10,7 @@ dotnet new globaljson --sdk-version 2.1.603
 git config user.name "xxx xxxx"
 git config user.email "xxx@xxx.xxx"
 
-## omnisharp.json
+## omnisharp.path
 
 [info]: OmniSharp.MSBuild.Discovery.MSBuildLocator
         Located 3 MSBuild instance(s)
@@ -44,6 +44,33 @@ https://github.com/OmniSharp/omnisharp-roslyn/issues/1094#issuecomment-420355477
 See:
 https://github.com/OmniSharp/omnisharp-vscode/issues/1727
 https://github.com/OmniSharp/omnisharp-roslyn/wiki/Configuration-Options#global-omnisharpjson
+
+## SET MSBuildSDKsPath
+
+This is an issue that is related to Omnisharp.
+
+Sometimes Omnisharp will report error loading projects and the following error message is given:
+"The SDK 'Microsoft.Net.Sdk' specified could not be found."
+
+The way to fix is is to manually(?) specify the SDK using the `DOTNET_MSBUILD_SDK_RESOLVER_SDKS_DIR` environment variable.
+
+For example:
+
+```
+SET MSBuildSDKsPath=C:\Program Files\dotnet\sdk\<sdk-version>\Sdks
+
+SET MSBuildSDKsPath=C:\Program Files\dotnet\sdk\2.1.603\Sdks
+
+SET MSBuildSDKsPath=C:\Program Files\dotnet\sdk\3.0.100-preview4-011223\Sdks
+```
+
+ZX: It maybe desirable to set an environment variable to the underlying SDK path.
+    For example set it to `DOTNET_SDK`, then the above can be re-written as:
+
+```
+    SET DOTNET_SDK=C:\Program Files\dotnet\sdk
+    SET MSBuildSDKsPath=%DOTNET_SDK%\2.1.603\Sdks
+```
 
 ## dev-certs
 
