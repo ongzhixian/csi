@@ -75,6 +75,12 @@ dotnet aspnet-codegenerator controller --controllerName Csi.WebApp.ProjectContro
 
 dotnet aspnet-codegenerator controller --controllerName HomeController --controllerNamespace Csi.WebApp.Sample --referenceScriptLibraries
 
+dotnet aspnet-codegenerator controller --controllerName ProjectController --controllerNamespace Csi.WebApp.Api.Controllers --referenceScriptLibraries --restWithNoViews --useAsyncActions 
+
+dotnet aspnet-codegenerator controller --controllerName ProjectController --controllerNamespace Csi.WebApp.Api.Controllers --referenceScriptLibraries --restWithNoViews --useAsyncActions --model Csi.Data.Project --dataContext Csi.WebApp.Data.CsiDbContext
+
+dotnet aspnet-codegenerator controller --controllerName EchoController --controllerNamespace Csi.WebApp.Api.Controllers --referenceScriptLibraries --restWithNoViews --useAsyncActions --readWriteActions
+
 
 ## Help: identity
 
