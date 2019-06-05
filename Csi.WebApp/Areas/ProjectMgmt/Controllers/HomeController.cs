@@ -8,8 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using Csi.Data;
 using Csi.WebApp.Data;
 
-namespace Csi.WebApp.ProjectMgmt
+namespace Csi.WebApp.Areas
 {
+    [Area("Project")]
     public class HomeController : Controller
     {
         private readonly CsiDbContext _context;
