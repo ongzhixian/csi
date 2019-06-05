@@ -8,13 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using Csi.Data;
 using Csi.WebApp.Data;
 
-namespace Csi.WebApp.Areas.Project.Controllers
+namespace Csi.WebApp.ProjectMgmt
 {
     public class HomeController : Controller
     {
         private readonly CsiDbContext _context;
 
-        public ProjectController(CsiDbContext context)
+        public HomeController(CsiDbContext context)
         {
             _context = context;
         }
