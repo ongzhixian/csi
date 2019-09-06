@@ -42,6 +42,13 @@ dotnet new mvc -n Csi.WebApp --auth Individual --use-browserlink true
 dotnet new classlib -n Csi.Models
 ```
 
+## Create new console
+
+```dotnet
+dotnet new console -n Csi.DemoConsole
+```
+
+
 ### Adding project to solution
 
 Assumes the solution file is in the directory where the command is executed and
@@ -114,6 +121,12 @@ dotnet add Csi.Data.Tests.csproj reference ..\Csi.Data\Csi.Data.csproj
 
 dotnet add Csi.WebApp.csproj reference ..\Csi.Data\Csi.Data.csproj
 dotnet add Csi.WebApp.csproj reference ..\Csi.Services\Csi.Services.csproj
+
+dotnet add Csi.DemoConsole.csproj reference ..\Csi.Data\Csi.Data.csproj
+dotnet add Csi.DemoConsole.csproj reference ..\Csi.Services\Csi.Services.csproj
+dotnet add Csi.DemoConsole.csproj reference ..\Csi.Models\Csi.Models.csproj
+
+
 ```
 
 
