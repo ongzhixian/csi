@@ -40,6 +40,8 @@ dotnet new mvc -n Csi.WebApp --auth Individual --use-browserlink true
 
 ```dotnet
 dotnet new classlib -n Csi.Models
+
+dotnet new classlib -n Csi.Common
 ```
 
 ## Create new console
@@ -125,6 +127,8 @@ dotnet add Csi.WebApp.csproj reference ..\Csi.Services\Csi.Services.csproj
 dotnet add Csi.DemoConsole.csproj reference ..\Csi.Data\Csi.Data.csproj
 dotnet add Csi.DemoConsole.csproj reference ..\Csi.Services\Csi.Services.csproj
 dotnet add Csi.DemoConsole.csproj reference ..\Csi.Models\Csi.Models.csproj
+dotnet add Csi.DemoConsole.csproj reference ..\Csi.Common\Csi.Common.csproj
+
 
 
 ```

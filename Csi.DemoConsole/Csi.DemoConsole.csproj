@@ -4,6 +4,7 @@
     <ProjectReference Include="..\Csi.Data\Csi.Data.csproj" />
     <ProjectReference Include="..\Csi.Services\Csi.Services.csproj" />
     <ProjectReference Include="..\Csi.Models\Csi.Models.csproj" />
+    <ProjectReference Include="..\Csi.Common\Csi.Common.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
