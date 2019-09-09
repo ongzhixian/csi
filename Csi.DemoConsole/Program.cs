@@ -30,7 +30,6 @@ namespace Csi.DemoConsole
             Log.Error(      "Test Error       message");
             Log.Fatal(      "Test Fatal       message");
 
-            
             Console.WriteLine("[PROGRAM END!!]");
         }
     }
