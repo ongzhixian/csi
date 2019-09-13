@@ -83,6 +83,11 @@ dotnet add package MySql.Data.EntityFrameworkCore
 
 dotnet add package BuildBundlerMinifier
 
+
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite
+
+
 - - - - - - - - - - - - -
 
 dotnet ef migrations add CreateIdentitySchema -c Csi.WebApp.Data.CsiDbContext
