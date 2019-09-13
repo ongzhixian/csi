@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section class="page content">
+    
+<div class="jumbotron">
+    <h1>CSI</h1>
+    <p>
+        This started out as my project management web application but its 
+        fast becoming my reference ASP.NET Core web application as I re-visit
+        and re-learn how to do certain tasks using .NET Core and Visual Studio Code.
+    </p>
+    
+    <p>
+        @Html.ActionLink("Learn more", "About", "Home", 
+            null, new { @class="btn btn-primary btn-lg", role="button" })
+        <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+    </p>
+</div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h3>
+                @Html.ActionLink("Projects", "Index", "Home",  
+                new { Area = "Project" }, 
+                new { @class="btn btn-primary btn-lg", role="button" })
+            </h3>
+            <p>
+                My project management tool
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h3>
+                @Html.ActionLink("Sample", "Index", "Home",  
+                new { Area = "Sample" }, 
+                new { @class="btn btn-primary btn-lg", role="button" })
+            </h3>
+            <p>
+                My compilation of sample codes.
+            </p>
+            </div>
+        <div class="col-md-4">
+            <h3>
+                @Html.ActionLink("Research", "Index", "Home",  
+                new { Area = "Research" }, 
+                new { @class="btn btn-primary btn-lg", role="button" })
+            </h3>
+            <p>
+                My research
+            </p>
+        </div>
+    </div>
+
+</section>
