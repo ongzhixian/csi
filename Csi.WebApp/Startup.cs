@@ -39,6 +39,9 @@ namespace Csi.WebApp
             services.AddDbContext<CsiDbContext>(options =>
                 options.UseMySQL("name=CsiDatabase")
             );
+            services.AddDbContext<CsiSQLiteDbContext>(options =>
+                options.UseSqlite("name=CsiSQLiteDatabase")
+            );
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -104,12 +107,14 @@ namespace Csi.WebApp
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+                    
+                routes.MapRoute(
                     name: "areaRoute",
                     template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                
             });
         }
     }
