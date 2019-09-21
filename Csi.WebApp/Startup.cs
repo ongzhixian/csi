@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Csi.WebApp.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -42,6 +43,22 @@ namespace Csi.WebApp
             services.AddDbContext<CsiSQLiteDbContext>(options =>
                 options.UseSqlite("name=CsiSQLiteDatabase")
             );
+
+            // Add this for non-Identity authentication
+            services.AddAuthentication(
+                CookieAuthenticationDefaults.AuthenticationScheme) // Use "Cookies" as name of authentication scheme
+                .AddCookie(options => { 
+                    // options is CookieAuthenticationOptions class 
+                    // (https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions?view=aspnetcore-2.2)
+                    options.LoginPath = new PathString("/Authentication/Login");
+                    options.AccessDeniedPath = new PathString("/Login/");
+                    options.ClaimsIssuer = "CSI";
+                    options.Cookie.Name = "CsiAuth";
+                    options.Cookie.HttpOnly = true;
+                    options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                    options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+                    options.SlidingExpiration = true;
+                });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -86,6 +103,15 @@ namespace Csi.WebApp
             //     RequestPath = "/.well-known/acme-challenge",
             //     EnableDirectoryBrowsing = true
             // });
+
+            // Define cookie policy for non-Identity authentication
+            var cookiePolicyOptions = new CookiePolicyOptions
+            {
+                MinimumSameSitePolicy = SameSiteMode.Strict,
+                //CheckConsentNeeded = context => true;
+                //MinimumSameSitePolicy = SameSiteMode.None;
+
+            };
 
             app.UseCookiePolicy();
 
