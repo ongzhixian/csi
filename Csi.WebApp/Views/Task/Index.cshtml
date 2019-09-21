@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewData["Title"] = "Task List";
+}
+
+<section class="page content">
+
+<div>
+    <h1>Task List</h1>
+    <p class="lead">
+        This page is left intentionally blank.
+        <br/>Use this document as a way to quickly start any new page.
+        <br/> All you get is this text and a mostly barebones HTML document.</p>
+</div>
+
+<p>
+    @ViewContext.RouteData.Values["action"]
+    @ViewContext.RouteData.Values["controller"]
+</p>
+
+</section>
