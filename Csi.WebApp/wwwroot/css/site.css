@@ -1,4 +1,6 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
+﻿@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Raleway&display=swap');
+
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
 for details on configuring this project to bundle and minify static web assets. */
 body {
     padding-top: 50px;
@@ -40,3 +42,22 @@ body {
     }
 }
 
+.content,
+.content p {
+    font-family: 'Raleway', sans-serif;
+}
+
+.content h1 {
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.debug.content {
+    font-size: .8em;
+    border-top: 1px dashed #982;
+}
+.debug.content h1 {
+    font-size: 1em;
+}
+.debug.content .key {
+    font-weight: bold;
+}
