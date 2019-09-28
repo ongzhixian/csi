@@ -1,0 +1,13 @@
+@using Microsoft.AspNetCore.Identity
+@using Csi.WebApp.Data
+@inject UserManager<CsiUser> UserManager
+
+
+<footer class="debug content">
+    <h1>Debug information</h1>
+    <p>
+        <span class="key">Username</span>:<span class="Value">@UserManager.GetUserName(User)</span>
+        <br /><span class="key">Controller</span>:<span class="Value">@ViewContext.RouteData.Values["controller"]</span>
+        <br /><span class="key">Action</span>:<span class="Value">@ViewContext.RouteData.Values["action"]</span>
+    </p>
+</footer>
