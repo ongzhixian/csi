@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Csi.Data
 {
-    [Table("Project")]
+    [Table("project")]
     public class SimpleProject //: BaseEntity, IUserAudit
     {
         [Key]
