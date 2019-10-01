@@ -53,5 +53,10 @@ namespace Csi.WebApp.Controllers
             return View();
         }
 
+        public IActionResult Add()
+        {
+            return View();
+        }
+
     }
 }
