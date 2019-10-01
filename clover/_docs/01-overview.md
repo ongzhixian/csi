@@ -2,7 +2,8 @@
 ============================
 
 Logging
-    syslog
+    syslog?
+        ZX: 
     log4c
     
     zlog
