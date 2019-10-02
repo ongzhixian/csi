@@ -10,9 +10,15 @@ Logging
     lwl
 
 
-Threading
+Error-handling
 Signals
 
+
+File I/O
+Socket I/O
+
+Threads
+Pipes
 
 Databases
     MySql
