@@ -8,6 +8,7 @@ using Csi.WebApp.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authorization;
 using Csi.WebApp.Data;
+using Microsoft.AspNetCore.Http;
 
 namespace Csi.WebApp.Controllers
 {
@@ -21,7 +22,6 @@ namespace Csi.WebApp.Controllers
         {
             this.logger = logger;
             this.db = context;
-            
         }
 
         public IActionResult Index()
