@@ -81,6 +81,11 @@ dotnet aspnet-codegenerator controller --controllerName ProjectController --cont
 
 dotnet aspnet-codegenerator controller --controllerName EchoController --controllerNamespace Csi.WebApp.Api.Controllers --referenceScriptLibraries --restWithNoViews --useAsyncActions --readWriteActions
 
+# Use below to create a Controller with basic CRUD without model; does not create views
+dotnet aspnet-codegenerator controller --controllerName Test2Controller --readWriteActions --controllerNamespace Csi.WebApp.Controllers --relativeFolderPath Controllers --referenceScriptLibraries
+
+dotnet aspnet-codegenerator controller --controllerName SimpleProjectController --model Csi.Data.SimpleProject --dataContext Csi.WebApp.Data.CsiSQLiteDbContext --controllerNamespace Csi.WebApp.Controllers --relativeFolderPath Controllers --referenceScriptLibraries
+
 
 ## Help: identity
 
