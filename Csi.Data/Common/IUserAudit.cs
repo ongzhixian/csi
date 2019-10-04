@@ -1,5 +1,9 @@
 using System;
 
+namespace Name
+{
+    
+}
 public interface IUserAudit
 {
     string Cre_By { get; set; }
