@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "Csi.Data"
+		},
+		{
+			"path": "Csi.Data.Tests"
+		},
+		{
+			"path": "Csi.Common"
+		}
+	]
+}
