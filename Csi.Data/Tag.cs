@@ -13,7 +13,7 @@ namespace Csi.Data
 
         [DataType(DataType.Text)]
         [Required]
-        [StringLength(int.MaxValue, MinimumLength=3, ErrorMessage="Name must have a minimum length of 3 characters.")]
+        [StringLength(int.MaxValue, MinimumLength=3, ErrorMessage="Text must have a minimum length of 3 characters.")]
         [Column("text")]
         public string Text { get; set; }
         
