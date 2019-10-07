@@ -12,7 +12,7 @@ namespace Csi.DemoConsole
         {
             Console.WriteLine("[PROGRAM START]");
 
-            Console.WriteLine(args.Length);
+            Console.WriteLine("Number of arguments: {0}", args.Length);
 
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
