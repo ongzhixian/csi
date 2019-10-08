@@ -1,4 +1,5 @@
 ﻿using System;
+using Csi.DemoConsole.SamplePrograms;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Core;
@@ -11,8 +12,6 @@ namespace Csi.DemoConsole
         static void Main(string[] args)
         {
             Console.WriteLine("[PROGRAM START]");
-
-            Console.WriteLine("Number of arguments: {0}", args.Length);
 
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
@@ -29,6 +28,12 @@ namespace Csi.DemoConsole
             Log.Warning(    "Test Warning     message");
             Log.Error(      "Test Error       message");
             Log.Fatal(      "Test Fatal       message");
+
+            Console.WriteLine("Number of arguments: {0}", args.Length);
+            
+            
+            ISampleProgram app = new Example2();
+            app.DoWork();
 
             Console.WriteLine("[PROGRAM END!!]");
         }
