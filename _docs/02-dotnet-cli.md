@@ -103,6 +103,11 @@ dotnet add package Microsoft.AspNetCore.Mvc.NewtonsoftJson
 dotnet add package Microsoft.AspNetCore.Mvc
 ?? dotnet add package Microsoft.AspNetCore.Razor.Design
 
+ML.NET
+dotnet add package Microsoft.ML
+
+INFER.NET
+dotnet add package Microsoft.ML.Probabilistic.Compiler
 
 Microsoft.EntityFrameworkCore.Sqlite
 MySql.Data.EntityFrameworkCore
@@ -185,6 +190,15 @@ you can add the default UI pages into the project by running the below:
 ```dotnet
 dotnet aspnet-codegenerator identity --useDefaultUI
 ```
+
+#### List tools
+dotnet tool list -g
+
+#### Install mlnet
+dotnet tool install -g mlnet
+
+#### CLI suggestions (tab-based auto-completion)
+dotnet tool install dotnet-suggest -g
 
 ## Reference
 
