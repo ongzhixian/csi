@@ -32,7 +32,10 @@ namespace Csi.DemoConsole
             Console.WriteLine("Number of arguments: {0}", args.Length);
             
             
-            ISampleProgram app = new Example2();
+            ISampleProgram app = new IrisClustering();
+                //new PricePredictor();
+                //new IssueClassification();
+                //new SentimentAnalysis();
             app.DoWork();
 
             Console.WriteLine("[PROGRAM END!!]");
