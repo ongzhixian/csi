@@ -35,7 +35,7 @@ Last algorithm -
 
 ## Tutorial (API)
 
-1. Sentiment analysis: 
+1. Sentiment analysis: (SentimentAnalysis.cs)
     demonstrates how to apply a **binary classification task** using ML.NET.
 2. GitHub issue classification: 
     demonstrates how to apply a **multiclass classification task** using ML.NET.
@@ -55,12 +55,15 @@ Last algorithm -
 9. Classify sentiment of movie reviews: 
     learn to load a **pre-trained TensorFlow model** to classify the sentiment of movie reviews.
 
-SentimentAnalysis
-IssueClassification
-PricePredictor
-IrisClustering
+SentimentAnalysis       -- Supervised learning; classify data into 2 groups
+IssueClassification     -- Supervised learning; classify data into multiple groups
+PricePredictor          -- Supervised learning; predicting values
+IrisClustering          -- Unsupervised learning; classification
 MovieRecommendation
 ImageClassification
 AnomalyDetection
 ObjectDetection
 SentimentClassification
+
+
+https://docs.microsoft.com/en-us/dotnet/machine-learning/resources/glossary
