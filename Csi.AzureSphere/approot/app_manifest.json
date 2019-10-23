@@ -1,0 +1,1 @@
+{"SchemaVersion":1,"Name":"Azure_Learn_GPIO","ComponentId":"4f1fd9fc-d412-41e9-b3e6-8a8570b9a750","EntryPoint":"/bin/app","CmdArgs":[],"Capabilities":{"Gpio":[12,9]},"ApplicationType":"Default","TargetApplicationRuntimeVersion":2}
