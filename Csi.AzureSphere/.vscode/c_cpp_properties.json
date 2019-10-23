@@ -1,0 +1,42 @@
+{
+    "configurations": [
+        {
+            
+            "name": "AzureSphere",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:/Apps/AzureSphere/Sysroots/3/usr/include/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "cStandard": "c11",
+            "intelliSenseMode": "gcc-x86",
+            "compilerPath": "C:\\Apps\\AzureSphere\\Sysroots\\3\\tools\\gcc\\gcc.exe",
+            "compilerArgs": [],
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/**",
+                    "C:/Apps/AzureSphere/Sysroots/3/usr/include/**"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        },
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "cStandard": "c11",
+            "intelliSenseMode": "gcc-x86"
+        }
+    ],
+    "version": 4
+}
