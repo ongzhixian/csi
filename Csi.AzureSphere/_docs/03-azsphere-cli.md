@@ -60,3 +60,21 @@ make
 copy Blink.out approot\bin\app
 
 azsphere device sideload deploy --imagepackage manual.imagepackage
+
+
+<ComponentId>
+App state   : debugging
+GDB port    : 2345
+Output port : 2342
+
+Command completed successfully in 00:00:00.9121174.
+
+Open a command prompt and use any Windows terminal client to read the output stream from the process. Specify 192.168.35.2 as the IP address and 2342 as the port.
+
+arm-poky-linux-musleabi-gdb.exe Blink.out
+
+Issue whatever gdb commands you choose. For example:
+
+target remote 192.168.35.2:2345
+break main
+c
