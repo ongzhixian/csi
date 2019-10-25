@@ -8,6 +8,9 @@ CC=gcc
 # The version of SDK that we are using 1/2/3
 SYSROOT=C:/Apps/AzureSphere/Sysroots/2
 
+# This refers to https://github.com/Azure/azure-sphere-samples
+HARDWARE=C:/src/github.com/azure/azure-sphere-samples/Hardware
+
 ########################################
 # Compilation flags
 ########################################
@@ -43,7 +46,7 @@ C_FLAGS=-c -x c -std=c11 -Wall --sysroot=$(SYSROOT) -D "_POSIX_C_SOURCE" -fno-ex
 DEBUG_FLAGS=-g2 -gdwarf-2
 OPTIMIZATION_FLAGS=-O0 -fno-strict-aliasing -fno-omit-frame-pointer
 ARM_FLAGS=-march=armv7ve -mthumb -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a7
-HEADER_DIR=-I $(SYSROOT)/usr/include 
+HEADER_DIR=-I $(SYSROOT)/usr/include -I $(HARDWARE)/avnet_mt3620_sk/inc
 #COMPILE_FLAGS=-c -x c -I $(SYSROOT)\usr\include -g2 -gdwarf-2 -Wall -O0 -fno-strict-aliasing -fno-omit-frame-pointer -D "_POSIX_C_SOURCE" -fno-exceptions -std=c11 $(ARM_FLAGS) --sysroot=$(SYSROOT)
 COMPILE_FLAGS=$(C_FLAGS) $(DEBUG_FLAGS) $(OPTIMIZATION_FLAGS) $(ARM_FLAGS) $(HEADER_DIR)
 
@@ -97,3 +100,30 @@ clean:
 	@echo Cleaning...$@
 	$(RM) $(TARGET)
 	$(RM) $(OBJS)
+
+pack:
+	@echo Consolidating inputs into approot folder for packing
+	cp Blink.out approot\bin\app
+	cp app_manifest.json approot
+	@echo Packing into image
+	azsphere image package-application --input approot --output manual.imagepackage --targetapiset 2 --verbose --hardwaredefinition $(HARDWARE)/mt3620_rdb/sample_hardware.json
+
+deploy:
+	azsphere device prep-debug
+	azsphere device sideload deploy --imagepackage manual.imagepackage
+
+debug:
+	azsphere device sideload start --debug --componentid 4f1fd9fc-d412-41e9-b3e6-8a8570b9a750
+	start putty -telnet 192.168.35.2 2342
+	@echo Running gdb
+	@echo target remote 192.168.35.2:2345
+	@echo break main
+	@echo c
+	arm-poky-linux-musleabi-gdb.exe Blink.out
+
+run:
+	azsphere device sideload start --componentid 4f1fd9fc-d412-41e9-b3e6-8a8570b9a750
+
+
+stop:
+	azsphere device sideload stop --componentid 4f1fd9fc-d412-41e9-b3e6-8a8570b9a750
