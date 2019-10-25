@@ -2,11 +2,11 @@
 
 ## Onboard sensors
 
-1.  Ambient Light, 
-2.  3-axis Accelerometer, 
-3.  3-axis Gyro, 
-4.  Temperature, 
-5.  Barometric Pressure
+1.  Ambient Light,          ALS-PT19
+2.  3-axis Accelerometer,   LSM6DSO
+3.  3-axis Gyro,            LSM6DSO
+4.  Temperature,            LSM6DSO
+5.  Barometric Pressure     LPS22HH
 
 ## Hardware expansion interfaces
 o MikroE Click Board Expansion Sockets (two sockets. I2C,SPI,UART,ADC,etc interfaces)
