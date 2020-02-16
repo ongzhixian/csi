@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Csi.DevWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Csi.DevWeb.Controllers
 {
@@ -22,6 +23,7 @@ namespace Csi.DevWeb.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
