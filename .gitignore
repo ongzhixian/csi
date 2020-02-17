@@ -338,3 +338,4 @@ Csi.WebApp/runtime-settings.json
 
 # Ignore logs in general
 *.log
+**/runtime-settings.json
