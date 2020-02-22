@@ -1,3 +1,17 @@
-﻿header.navbar {
+﻿:root {
+    --background-color: #FBFBFB;
+    --text-color: #201A23;
+    --border-color: #631D76;
+    --main-bg2-color: #9E4770;
+    --main-bg3-color: #2E2532;
+}
+  
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+header.navbar {
     padding:1em;
+    border-bottom: 6px solid var(--border-color);
+    margin-bottom: 1em;
 }

@@ -19,6 +19,7 @@
     </environment>
 </head>
 <body>
+    
     <header class="navbar">
         <section class="navbar-section">
             <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand mr-2">LookMeUp</a>
@@ -35,9 +36,11 @@
         </section>
     </header>
 
+    <partial name="_CookieConsentPartial" />
+    
     @RenderBody()
 
-    <partial name="_CookieConsentPartial" />
+    
 
 
 
