@@ -15,3 +15,7 @@ header.navbar {
     border-bottom: 6px solid var(--border-color);
     margin-bottom: 1em;
 }
+
+div.main-content {
+    margin: 0 1.67em;
+}
