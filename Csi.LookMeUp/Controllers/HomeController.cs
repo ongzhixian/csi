@@ -23,6 +23,10 @@ namespace Csi.LookMeUp.Controllers
         {
             log.LogInformation("Index page says hello");
 
+            log.LogInformation(User.Identity.GetType().ToString());
+
+            ClaimsIdentityUser n = new ClaimsIdentityUser(User.Identity);
+
             return View();
         }
 
@@ -52,11 +56,5 @@ namespace Csi.LookMeUp.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        [Route("sign-out")]
-        public async Task<IActionResult> OnPostLogoutAsync()
-        {
-            await HttpContext.SignOutAsync();
-            return Index();
-        }
     }
 }

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csi.Services", "Csi.Service
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csi.WebApp", "Csi.WebApp\Csi.WebApp.csproj", "{F6AC5978-BC88-405E-AB7D-28AE7FB6A0A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csi.LookMeUp", "Csi.LookMeUp\Csi.LookMeUp.csproj", "{209F0D5A-AA89-4B95-BE82-11EAF794B87E}"
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,5 +74,17 @@ Global
 		{F6AC5978-BC88-405E-AB7D-28AE7FB6A0A3}.Release|x64.Build.0 = Release|Any CPU
 		{F6AC5978-BC88-405E-AB7D-28AE7FB6A0A3}.Release|x86.ActiveCfg = Release|Any CPU
 		{F6AC5978-BC88-405E-AB7D-28AE7FB6A0A3}.Release|x86.Build.0 = Release|Any CPU
+		{209F0D5A-AA89-4B95-BE82-11EAF794B87E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{209F0D5A-AA89-4B95-BE82-11EAF794B87E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{209F0D5A-AA89-4B95-BE82-11EAF794B87E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{209F0D5A-AA89-4B95-BE82-11EAF794B87E}.Debug|x64.Build.0 = Debug|Any CPU
+		{209F0D5A-AA89-4B95-BE82-11EAF794B87E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{209F0D5A-AA89-4B95-BE82-11EAF794B87E}.Debug|x86.Build.0 = Debug|Any CPU
+		{209F0D5A-AA89-4B95-BE82-11EAF794B87E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{209F0D5A-AA89-4B95-BE82-11EAF794B87E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{209F0D5A-AA89-4B95-BE82-11EAF794B87E}.Release|x64.ActiveCfg = Release|Any CPU
+		{209F0D5A-AA89-4B95-BE82-11EAF794B87E}.Release|x64.Build.0 = Release|Any CPU
+		{209F0D5A-AA89-4B95-BE82-11EAF794B87E}.Release|x86.ActiveCfg = Release|Any CPU
+		{209F0D5A-AA89-4B95-BE82-11EAF794B87E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
