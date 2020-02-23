@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using NLog.Web;
 
 namespace Csi.LookMeUp
 {
@@ -14,18 +15,34 @@ namespace Csi.LookMeUp
     {
         public static void Main(string[] args)
         {
-            // CreateWebHostBuilder(args).Build().Run();
-            //bool isService = !(System.Diagnostics.Debugger.IsAttached || args.Contains("--console"));
+            
+            var logger = NLog.Web.NLogBuilder.ConfigureNLog("nlog-config.xml").GetCurrentClassLogger();
+            try
+            {
+                // CreateWebHostBuilder(args).Build().Run();
+                //bool isService = !(System.Diagnostics.Debugger.IsAttached || args.Contains("--console"));
 
-            IConfigurationRoot config = new ConfigurationBuilder()
-                .AddJsonFile("runtime-settings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddEnvironmentVariables()
-                .Build();
+                IConfigurationRoot config = new ConfigurationBuilder()
+                    .AddJsonFile("runtime-settings.json", optional: true, reloadOnChange: true)
+                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                    .AddEnvironmentVariables()
+                    .Build();
 
-            IWebHost host = CreateWebHostBuilder(config).Build();
+                IWebHost host = CreateWebHostBuilder(config).Build();
 
-            host.Run();
+                host.Run();
+            }
+            catch (Exception ex)
+            {
+                //NLog: catch setup errors
+                logger.Error(ex, "Stopped program because of exception");
+                throw;
+            }
+            finally
+            {
+                // Ensure to flush and stop internal timers/threads before application-exit (Avoid segmentation fault on Linux)
+                NLog.LogManager.Shutdown();
+            }
         }
 
         // public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -36,6 +53,7 @@ namespace Csi.LookMeUp
             .UseContentRoot(Directory.GetCurrentDirectory())
             .UseConfiguration(config)
             .UseKestrel()
-            .UseStartup<Startup>();
+            .UseStartup<Startup>()
+            .UseNLog();
     }
 }

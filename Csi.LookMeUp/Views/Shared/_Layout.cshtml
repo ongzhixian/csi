@@ -28,21 +28,22 @@
             <a asp-area="" asp-controller="Home" asp-action="Contact" class="btn btn-link">Contact</a>
 
         </section>
-        <section class="navbar-section">
+        <!-- TODO: Another day
+        <section class="navbar-center">
             <div class="input-group input-inline">
-            <input class="form-input" type="text" placeholder="search">
-            <button class="btn btn-primary input-group-btn">Search</button>
+                <input class="form-input" type="text" placeholder="search">
+                <button class="btn btn-primary input-group-btn">Search</button>
             </div>
+        </section>
+        -->
+        <section class="navbar-section">
+            Current user: Zhixian
         </section>
     </header>
 
     <partial name="_CookieConsentPartial" />
     
     @RenderBody()
-
-    
-
-
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>

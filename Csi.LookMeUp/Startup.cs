@@ -46,7 +46,6 @@ namespace Csi.LookMeUp
                     options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
                 });
 
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

@@ -7,13 +7,22 @@ using Microsoft.AspNetCore.Mvc;
 using Csi.LookMeUp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.Extensions.Logging;
 
 namespace Csi.LookMeUp.Controllers
 {
     public class HomeController : Controller
     {
+        ILogger<HomeController> log = null;
+
+        public HomeController(ILogger<HomeController> log)
+        {
+            this.log = log;
+        }
         public IActionResult Index()
         {
+            log.LogInformation("Index page says hello");
+
             return View();
         }
 

@@ -1,0 +1,1 @@
+:root{--background-color:#fbfbfb;--text-color:#201a23;--border-color:#631d76;--main-bg2-color:#9e4770;--main-bg3-color:#2e2532}body{background-color:var(--background-color);color:var(--text-color)}header.navbar{padding:1em;border-bottom:6px solid var(--border-color);margin-bottom:1em}
