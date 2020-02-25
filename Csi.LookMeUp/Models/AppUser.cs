@@ -7,6 +7,16 @@ using Microsoft.Extensions.Logging;
 
 namespace Csi.LookMeUp.Models
 {
+    public class JwtUser
+    {
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string Token { get; set; }
+    }
+
     public interface IClaimsIdentityUser
     {
         string DisplayName { get; set; }

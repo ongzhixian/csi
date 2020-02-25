@@ -30,7 +30,10 @@ namespace Csi.LookMeUp.Controllers
         //[Route("sign-out")]
         public async Task<IActionResult> Logout()
         {
-            await HttpContext.SignOutAsync();
+            AuthenticationProperties prop = new AuthenticationProperties();
+
+            prop.RedirectUri = "https://www.google.com/accounts/Logout";
+            await HttpContext.SignOutAsync(prop);
             return View();
 
         }
