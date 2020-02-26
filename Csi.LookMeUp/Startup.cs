@@ -45,19 +45,19 @@ namespace Csi.LookMeUp
             services
                 .AddAuthentication(options =>
                 {
-                    // options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                    // options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+                    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;  // AuthenticationScheme = "Cookies"
+                    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;       // AuthenticationScheme = "Google"
 
-                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                    // options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    // options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 })
-                .AddCookie()
+                .AddCookie(options => {
+                    options.Cookie.Name = "LookMeUp_Authn";
+                })
                 .AddGoogle(options =>
                 {
                     options.ClientId = Configuration["Authentication:Google:ClientId"];
                     options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-
-                    
                 })
                 .AddJwtBearer(x =>
                 {
