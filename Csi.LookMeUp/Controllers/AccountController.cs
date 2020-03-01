@@ -12,6 +12,13 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Csi.LookMeUp.Controllers
 {
+    public interface IAccountManagement
+    {
+        void Register(string username, string password);
+        
+        
+    }
+
     public class AccountController : Controller
     {
         ILogger<AccountController> log = null;
@@ -77,13 +84,32 @@ namespace Csi.LookMeUp.Controllers
 
         }
 
-
         [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.Google.GoogleDefaults.AuthenticationScheme)]
         public IActionResult GoogleSignIn()
         {
             return RedirectToAction("Index", "Home");
 
         }
+
+        public IActionResult Register()
+        {
+            log.LogInformation("Register");
+
+            return View(new RegisterAccountViewModel());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Register([FromForm]RegisterAccountViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+            }
+
+            return View(model);
+
+        }
+
 
         public IActionResult LoginOK(LoginViewModel model)
         {
