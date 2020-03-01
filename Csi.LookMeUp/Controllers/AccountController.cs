@@ -8,6 +8,7 @@ using Csi.LookMeUp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Csi.LookMeUp.Controllers
 {
@@ -42,6 +43,7 @@ namespace Csi.LookMeUp.Controllers
                     IEnumerable<System.Security.Claims.Claim> claims = new List<System.Security.Claims.Claim>
                     {
                         new System.Security.Claims.Claim(System.Security.Claims.ClaimTypes.Name, model.Username),
+                        new System.Security.Claims.Claim(System.Security.Claims.ClaimTypes.GivenName, model.Username),
                         new System.Security.Claims.Claim(System.Security.Claims.ClaimTypes.Role, "Member")
                     };
 
@@ -51,22 +53,35 @@ namespace Csi.LookMeUp.Controllers
                                 claims,
                                 Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme,
                                 System.Security.Claims.ClaimTypes.Name,
-                                System.Security.Claims.ClaimTypes.Role)
-                            ));
+                                System.Security.Claims.ClaimTypes.Role
+                            )
+                        ), 
+                        new AuthenticationProperties {  
+                            RedirectUri = "/Home/Index"
+                        });
 
-
-                    return View("LoginOK", model);
+                    //return View("LoginOK", model);
                 }
                     
-                else
-                {
-                    return View("LoginNG", model);
+                // else
+                // {
+                //     return View("LoginNG", model);
 
-                }
+                // }
+
+                return RedirectToAction("Index", "Home");
                     
             }
 
             return View(model);
+
+        }
+
+
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.Google.GoogleDefaults.AuthenticationScheme)]
+        public IActionResult GoogleSignIn()
+        {
+            return RedirectToAction("Index", "Home");
 
         }
 
@@ -87,10 +102,17 @@ namespace Csi.LookMeUp.Controllers
         //[Route("sign-out")]
         public async Task<IActionResult> Logout()
         {
-            AuthenticationProperties prop = new AuthenticationProperties();
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme, new AuthenticationProperties
+            {
+                // prop.RedirectUri = "https://www.google.com/accounts/Logout";
+                //RedirectUri = "https://localhost:35001/Home/Index"
+                //RedirectUri = "https://accounts.google.com/Logout?continue=https://localhost:35001/Home/Index"
+                // https://accounts.google.com/Logout?continue=https://localhost:35001/Home/Index
+            });
 
-            // prop.RedirectUri = "https://www.google.com/accounts/Logout";
-            await HttpContext.SignOutAsync(prop);
+            AuthenticationProperties prop = new AuthenticationProperties();
+            prop.RedirectUri = "/Home/Index";
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme, prop);
             return View();
 
         }

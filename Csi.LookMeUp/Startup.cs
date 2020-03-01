@@ -46,7 +46,8 @@ namespace Csi.LookMeUp
                 .AddAuthentication(options =>
                 {
                     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;  // AuthenticationScheme = "Cookies"
-                    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;       // AuthenticationScheme = "Google"
+                    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                    //options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;       // AuthenticationScheme = "Google"
 
                     // options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                     // options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -58,6 +59,7 @@ namespace Csi.LookMeUp
                 {
                     options.ClientId = Configuration["Authentication:Google:ClientId"];
                     options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+                    
                 })
                 .AddJwtBearer(x =>
                 {
