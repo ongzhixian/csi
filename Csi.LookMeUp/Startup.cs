@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -59,6 +60,27 @@ namespace Csi.LookMeUp
                 {
                     options.ClientId = Configuration["Authentication:Google:ClientId"];
                     options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+
+                    options.ClaimActions.MapJsonKey("urn:google:picture", "picture", "url");
+                    options.ClaimActions.MapJsonKey("urn:google:locale", "locale", "string");
+                    options.SaveTokens = true;
+
+                    
+
+                    options.Events.OnCreatingTicket = ctx =>
+                    {
+                        List<AuthenticationToken> tokens = ctx.Properties.GetTokens().ToList(); 
+
+                        tokens.Add(new AuthenticationToken()
+                        {
+                            Name = "TicketCreated", 
+                            Value = DateTime.UtcNow.ToString()
+                        });
+
+                        ctx.Properties.StoreTokens(tokens);
+
+                        return Task.CompletedTask;
+                    };
                     
                 })
                 .AddJwtBearer(x =>
