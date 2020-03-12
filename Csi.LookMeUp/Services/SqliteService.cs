@@ -62,6 +62,14 @@ namespace Csi.LookMeUp.Services
 );
 ";
             this.Execute(cmd);
+
+            cmd.CommandText = 
+@"CREATE UNIQUE INDEX ""app_user_unique"" ON ""app_user"" (
+	""provider_name"",
+	""name_identifier""
+);";
+            this.Execute(cmd);
+
         }
 
         public readonly string[] CreateTableSqlStatements = new string[] {
@@ -72,6 +80,7 @@ namespace Csi.LookMeUp.Services
 	""name_identifier""	TEXT NOT NULL,
 	""cre_date""	    INTEGER NOT NULL DEFAULT CURRENT_TIMESTAMP
 );"
+
         };
     }
 }
