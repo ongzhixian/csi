@@ -38,4 +38,8 @@
   <ItemGroup>
     <Folder Include="Views\Account\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Csi.Authentication\Csi.Authentication.csproj" />
+  </ItemGroup>
 </Project>

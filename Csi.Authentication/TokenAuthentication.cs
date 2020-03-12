@@ -26,7 +26,7 @@ namespace Csi.Authentication
 
             this.securityKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(secret));
 
-            this.signingCredentials = new SigningCredentials(this.securityKey, SecurityAlgorithms.HmacSha256Signature)
+            this.signingCredentials = new SigningCredentials(this.securityKey, SecurityAlgorithms.HmacSha256Signature);
         }
 
         public string GetToken(string username, string password)
