@@ -340,3 +340,4 @@ Csi.WebApp/runtime-settings.json
 *.log
 **/runtime-settings.json
 **/wwwroot/data/*
+**.orig
