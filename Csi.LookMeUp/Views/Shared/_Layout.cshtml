@@ -26,6 +26,7 @@
             <a asp-area="" asp-controller="Home" asp-action="About" class="btn btn-link">About</a>
             <a asp-area="" asp-controller="Home" asp-action="Contact" class="btn btn-link">Manage</a>
             <a asp-area="" asp-controller="Home" asp-action="Contact" class="btn btn-link">Contact</a>
+            <a asp-area="" asp-controller="Task" asp-action="Index" class="btn btn-link">Task</a>
 
         </section>
         <!-- TODO: Another day
@@ -44,8 +45,9 @@
     <partial name="_CookieConsentPartial" />
     
     <div class="main-content">
-    @RenderBody()
+        @RenderBody()
     </div>
+    
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>

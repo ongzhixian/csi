@@ -25,6 +25,9 @@
     <Content Update="runtime-settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Update="nlog-config.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Update="Properties\launchSettings.json">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -34,5 +37,9 @@
 
   <ItemGroup>
     <Folder Include="Views\Account\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Csi.Authentication\Csi.Authentication.csproj" />
   </ItemGroup>
 </Project>

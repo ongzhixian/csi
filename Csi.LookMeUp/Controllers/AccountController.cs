@@ -14,6 +14,13 @@ using Microsoft.AspNetCore.Authentication.Google;
 
 namespace Csi.LookMeUp.Controllers
 {
+    public interface IAccountManagement
+    {
+        void Register(string username, string password);
+        
+        
+    }
+
     public class AccountController : Controller
     {
         ILogger<AccountController> log = null;
@@ -27,49 +34,113 @@ namespace Csi.LookMeUp.Controllers
         {
             log.LogInformation("Login");
 
-            //System.Web.HttpContext.
-            // System.Web.Mvc.HttpContext.Sess
+            return View(new LoginViewModel());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> LoginAsync([FromForm]LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                log.LogInformation("Username={0}|Password={1}",model.Username, model.Password);
+
+                //model.Username
+                //model.Password
+                if (model.Username.Equals("zong", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    IEnumerable<System.Security.Claims.Claim> claims = new List<System.Security.Claims.Claim>
+                    {
+                        new System.Security.Claims.Claim(System.Security.Claims.ClaimTypes.Name, model.Username),
+                        new System.Security.Claims.Claim(System.Security.Claims.ClaimTypes.GivenName, model.Username),
+                        new System.Security.Claims.Claim(System.Security.Claims.ClaimTypes.Role, "Member")
+                    };
+
+                    await HttpContext.SignInAsync(
+                        new System.Security.Claims.ClaimsPrincipal(
+                            new System.Security.Claims.ClaimsIdentity(
+                                claims,
+                                Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme,
+                                System.Security.Claims.ClaimTypes.Name,
+                                System.Security.Claims.ClaimTypes.Role
+                            )
+                        ), 
+                        new AuthenticationProperties {  
+                            RedirectUri = "/Home/Index"
+                        });
+
+                    //return View("LoginOK", model);
+                }
+                    
+                // else
+                // {
+                //     return View("LoginNG", model);
+
+                // }
+
+                return RedirectToAction("Index", "Home");
+                    
+            }
+
+            return View(model);
+
+        }
+
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.Google.GoogleDefaults.AuthenticationScheme)]
+        public IActionResult GoogleSignIn()
+        {
+            return RedirectToAction("Index", "Home");
+
+        }
+
+        public IActionResult Register()
+        {
+            log.LogInformation("Register");
+
+            return View(new RegisterAccountViewModel());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Register([FromForm]RegisterAccountViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+            }
+
+            return View(model);
+
+        }
 
 
-            return View();
+        public IActionResult LoginOK(LoginViewModel model)
+        {
+            log.LogInformation("Login OK");
+
+            return View(model);
+        }
+
+        public IActionResult LoginNG(LoginViewModel model)
+        {
+            log.LogInformation("Login NG");
+
+            return View(model);
         }
 
         //[Route("sign-out")]
         public async Task<IActionResult> Logout()
         {
-            await HttpContext.SignOutAsync();
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme, new AuthenticationProperties
+            {
+                // prop.RedirectUri = "https://www.google.com/accounts/Logout";
+                //RedirectUri = "https://localhost:35001/Home/Index"
+                //RedirectUri = "https://accounts.google.com/Logout?continue=https://localhost:35001/Home/Index"
+                // https://accounts.google.com/Logout?continue=https://localhost:35001/Home/Index
+            });
 
-            //await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-
-
-
-            // var props = new AuthenticationProperties();
-            // await HttpContext.SignOutAsync("oidc", props);
-
-            //await httpContext.SignOutAsync("Cookies");
-            
-
-
-
-            // options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            // options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
-            
-            //WebSecurity.Logout();
-
-            //await AuthenticationManager.SignOutAsync(DefaultAuthenticationTypes.ApplicationCookie);
-
-            //await Context.Authentication.SignOutAsync(OpenIdConnectAuthenticationDefaults.AuthenticationScheme);
-
-            //Context.Authentication.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-
-            //AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-
-            // foreach (var cookie in Request.Cookies.Keys)
-            // {
-            //     //if (cookie == ".AspNetCore.Session")
-            //         Response.Cookies.Delete(cookie);
-            // }
-            
+            AuthenticationProperties prop = new AuthenticationProperties();
+            prop.RedirectUri = "/Home/Index";
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme, prop);
             return View();
 
         }

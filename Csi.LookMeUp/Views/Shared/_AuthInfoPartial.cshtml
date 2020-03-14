@@ -7,9 +7,11 @@
 
 @if (User.Identity.IsAuthenticated)
 {
+    @User.Identity.AuthenticationType
     <a asp-area="" asp-controller="Account" asp-action="Logout" class="btn btn-link">Log out @user.DisplayName</a>
 }
 else
 {
+    <a asp-area="" asp-controller="Account" asp-action="Register" class="btn btn-link">Register</a>
     <a asp-area="" asp-controller="Account" asp-action="Login" class="btn btn-link">Log in</a>
 }
