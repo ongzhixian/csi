@@ -67,6 +67,7 @@ namespace Csi.AuthenticationGateway
         public static IWebHostBuilder CreateWebHostBuilder(IConfiguration config) =>
             new WebHostBuilder()
             .UseConfiguration(config)
+            .UseContentRoot(Directory.GetCurrentDirectory())
             .ConfigureLogging(logging =>
             {
                 logging.ClearProviders();

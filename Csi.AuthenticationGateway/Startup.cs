@@ -40,6 +40,10 @@ namespace Csi.AuthenticationGateway
                 app.UseHsts();
             }
 
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            app.UseStatusCodePagesWithRedirects("~/errors/{0}.html");;
+
             app.UseHttpsRedirection();
             app.UseMvc(routes =>
             {
