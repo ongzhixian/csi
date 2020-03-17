@@ -1,13 +1,14 @@
-# safelist
-branches:
-  only:
-  - master
-  - Csi.AuthenticationGateway
 
 language: csharp
 #solution: solution-name.sln
 mono: none
 dotnet: 2.1.512
 script:
- - dotnet restore
+  - dotnet restore
   - dotnet build
+
+# safelist
+branches:
+  only:
+  - master
+  - Csi.AuthenticationGateway
