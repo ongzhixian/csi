@@ -8,3 +8,10 @@ branches:
 language: csharp
 dist: xenial
 os: linux
+
+mono: none
+dotnet: 2.1.512
+script:
+  - dotnet restore
+  - dotnet build
+  
