@@ -3,6 +3,11 @@ language: csharp
 #solution: solution-name.sln
 mono: none
 dotnet: 2.1.512
+
+install:
+- dotnet restore
+
+
 script:
   - dotnet restore
   - dotnet build
