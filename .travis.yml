@@ -12,7 +12,10 @@ os: linux
 mono: none
 dotnet: 2.1.512
 
-install:
+env:
+  - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
+
+before_install:
   - sudo apt update
   - sudo apt install -y openssh-client sshpass lftp
 
@@ -20,7 +23,8 @@ script:
   - dotnet restore
   - dotnet build
   - dotnet publish --output .public
+  - ls -al
 
 after_success:
   - echo "pwd" | sshpass -p $SFTP_PASSWORD sftp -o StrictHostKeyChecking=no zhixian@plato.emptool.com
-  - lftp -e "mirror -R .public/ /var/www/csi-auth" -u zhixian,$SFTP_PASSWORD sftp://plato.emptool.com
+  - lftp -e "mirror -R .public/ /var/www/csi-auth ;quit" -u zhixian,$SFTP_PASSWORD sftp://plato.emptool.com
