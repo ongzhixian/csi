@@ -19,10 +19,13 @@ before_install:
 script:
   - dotnet restore
   - dotnet build
-  - dotnet publish Csi.AuthenticationGateway --output ./public
+  - pwd
+  - mkdir .public
+  - dotnet publish Csi.AuthenticationGateway --output .public
   - mkdir .testPUB
   - ls -al
+  - ls -al .public
 
 after_success:
   - echo "pwd" | sshpass -p $SFTP_PASSWORD sftp -o StrictHostKeyChecking=no zhixian@plato.emptool.com
-  - lftp -e "mirror -R ./public /var/www/csi-auth ;quit" -u zhixian,$SFTP_PASSWORD sftp://plato.emptool.com
+  - lftp -e "mirror -R .public /var/www/csi-auth ;quit" -u zhixian,$SFTP_PASSWORD sftp://plato.emptool.com
