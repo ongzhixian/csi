@@ -12,12 +12,9 @@ os: linux
 mono: none
 dotnet: 2.1.512
 
-env:
-  - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
-
 install:
-  - apt-get update
-  - apt-get install -y openssh-client sshpass lftp
+  - apt update
+  - apt install -y openssh-client sshpass lftp
 
 script:
   - dotnet restore
