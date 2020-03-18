@@ -13,8 +13,8 @@ mono: none
 dotnet: 2.1.512
 
 install:
-  - apt update
-  - apt install -y openssh-client sshpass lftp
+  - sudo apt update
+  - sudo apt install -y openssh-client sshpass lftp
 
 script:
   - dotnet restore
