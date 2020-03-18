@@ -13,8 +13,9 @@ mono: none
 dotnet: 2.1.512
 
 env:
-  - DOTNET_CLI_TELEMETRY_OPTOUT=1
-  - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
+  global:
+    - DOTNET_CLI_TELEMETRY_OPTOUT=1
+    - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
 
 before_install:
   - sudo apt update
@@ -26,8 +27,8 @@ script:
   - pwd
   - dotnet publish Csi.AuthenticationGateway
   - ls -al
-  - ls -al deploy
+  - ls -al ./Csi.AuthenticationGateway/bin/Debug/netcoreapp2.1/publish/
 
 after_success:
   - echo "pwd" | sshpass -p $SFTP_PASSWORD sftp -o StrictHostKeyChecking=no zhixian@plato.emptool.com
-  - lftp -e "mirror -R deploy /var/www/csi-auth ;quit" -u zhixian,$SFTP_PASSWORD sftp://plato.emptool.com
+  - lftp -e "mirror -R ./Csi.AuthenticationGateway/bin/Debug/netcoreapp2.1/publish/ /var/www/csi-auth ;quit" -u zhixian,$SFTP_PASSWORD sftp://plato.emptool.com
