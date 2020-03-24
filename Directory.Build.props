@@ -1,0 +1,13 @@
+<Project>
+  <PropertyGroup>
+
+    <Company>PGG</Company>
+    <Copyright>Copyright © 2020, PGG</Copyright>
+    
+    <RepositoryUrl>http://project-repo.txt</RepositoryUrl>
+    <RepositoryType>repo type(GIT?)</RepositoryType>
+    
+    <NeutralLanguage>en</NeutralLanguage>
+    
+  </PropertyGroup>
+</Project>
