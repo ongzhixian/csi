@@ -16,4 +16,12 @@ namespace Csi.ExtensionsConsole
             return "Caw caw";
         }
     }
+
+    public class Pigeon : IBird
+    {
+        public string MakeSound()
+        {
+            return "Coo coo coo";
+        }
+    }
 }

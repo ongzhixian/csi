@@ -17,5 +17,10 @@ namespace Csi.Extensions
             log.Log(LogLevel.Error,         "LogLevel Error         (fail) test."); // Severity: 5
             log.Log(LogLevel.Critical,      "LogLevel Critical      (crit) test."); // Severity: 6
         }
+
+        public static void HelloWorld(this ILogger log)
+        {
+            log.Log(LogLevel.Information, "Hello world");
+        }
     }
 }
