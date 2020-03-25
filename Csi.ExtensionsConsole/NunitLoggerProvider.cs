@@ -97,7 +97,20 @@ namespace Csi.ExtensionsConsole
 
             public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
             {
-                System.Diagnostics.Trace.WriteLine($"{logLevel}|{eventId}|{state}|{exception}|{formatter(state, exception)}");
+                string formmatedString = formatter(state, exception);
+
+                if (string.IsNullOrEmpty(formmatedString))
+                {
+                    System.Diagnostics.Trace.WriteLine($"{logLevel}|{eventId}|{CategoryName}");
+                }
+                else
+                {
+                    System.Diagnostics.Trace.WriteLine($"{logLevel}|{eventId}|{CategoryName}|{formmatedString}");
+                }
+
+
+                //System.Diagnostics.Trace.WriteLine($"{logLevel}|{eventId}|{state}|{exception}|{formatter(state, exception)}");
+
 
                 // Tried passing serialized XML via XmlSerializer
                 // Result: Does not work well.

@@ -9,7 +9,8 @@ using Csi.ExtensionsConsole;
 
 namespace Tests
 {
-    public class ILoggerExtensionsTests
+    [Ignore("Dummy tests")]
+    public class __DummyTests__
     {
         IConfigurationRoot config;
         ServiceCollection services;
@@ -48,8 +49,9 @@ namespace Tests
                 .CreateLogger("SAMPLE");
         }
 
+        
         [Test]
-        public void __Test__()
+        public void Test1()
         {
             //IUnitTestLogger p = log as IUnitTestLogger;
             //UnitTestLoggerProvider.UnitTestLogger q = log as UnitTestLoggerProvider.UnitTestLogger;
