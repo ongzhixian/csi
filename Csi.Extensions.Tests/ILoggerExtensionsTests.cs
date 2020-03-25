@@ -45,7 +45,27 @@ namespace Tests
             // Setup a logger
             log = sp
                 .GetService<ILoggerFactory>()
-                .CreateLogger("SAMPLE");
+                .CreateLogger<ILoggerExtensionsTests>();
+        }
+
+        [Test]
+        public void Test1()
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            using (StringWriter sw = new StringWriter(sb))
+            using (System.Diagnostics.TextWriterTraceListener stringTraceListener = new System.Diagnostics.TextWriterTraceListener(sw))
+            {
+                // Clean up - add trace listener
+                System.Diagnostics.Trace.Listeners.Add(stringTraceListener);
+
+                //log.HelloWorld();
+                log.Log(LogLevel.Information, "Hello world");
+
+                Assert.AreEqual("Information|0|Tests.ILoggerExtensionsTests|Hello world\r\n", sw.ToString());
+
+                // Clean up - remove trace listener
+                System.Diagnostics.Trace.Listeners.Remove(stringTraceListener);
+            }
         }
 
         [Test]
@@ -71,7 +91,7 @@ namespace Tests
                 //log.HelloWorld();
                 log.Log(LogLevel.Information, "Hello world");
 
-                Assert.AreEqual("Information|0|SAMPLE|Hello world\r\n", sw.ToString());
+                Assert.AreEqual("Information|0|Tests.ILoggerExtensionsTests|Hello world\r\n", sw.ToString());
 
                 // If performing other operatoins
                 //sb.Length = 0; // Clear buffers (otherwise, previous log statements will be in buffer)
