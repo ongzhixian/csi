@@ -9,7 +9,8 @@ using Csi.ExtensionsConsole;
 
 namespace Tests
 {
-    [Ignore("Dummy tests")]
+    //[Ignore("Dummy tests")]
+    [Explicit]
     public class __DummyTests__
     {
         IConfigurationRoot config;
