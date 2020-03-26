@@ -6,8 +6,6 @@ namespace Tests
 {
     public class TraceLoggerProviderTests
     {
-        ILoggerProvider loggerProvider;
-
         [Test(
             Author="ONG ZHI XIAN", 
             Description = "Constructor (0 params) test",

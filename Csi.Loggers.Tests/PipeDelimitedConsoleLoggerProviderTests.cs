@@ -6,8 +6,6 @@ namespace Tests
 {
     public class PipeDelimitedConsoleLoggerProviderTests
     {
-        ILoggerProvider loggerProvider;
-
         [Test(
             Author="ONG ZHI XIAN", 
             Description = "Constructor (0 params) test",
