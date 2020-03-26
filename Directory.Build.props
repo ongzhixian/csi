@@ -1,0 +1,13 @@
+<Project>
+  <PropertyGroup>
+
+    <Company>Emptool</Company>
+    <Copyright>Copyright © 2020, Emptool</Copyright>
+    
+    <RepositoryUrl>https://github.com/ongzhixian/csi</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    
+    <NeutralLanguage>en</NeutralLanguage>
+    
+  </PropertyGroup>
+</Project>
