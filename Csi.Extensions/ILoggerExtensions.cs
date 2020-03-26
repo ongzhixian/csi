@@ -18,9 +18,9 @@ namespace Csi.Extensions
             log.Log(LogLevel.Critical,      "LogLevel Critical      (crit) test."); // Severity: 6
         }
 
-        public static void HelloWorld(this ILogger log)
-        {
-            log.Log(LogLevel.Information, "Hello world");
-        }
+        //public static void HelloWorld(this ILogger log)
+        //{
+        //    log.Log(LogLevel.Information, "Hello world");
+        //}
     }
 }

@@ -6,8 +6,9 @@
     
     <Product>Csi.Extensions</Product>
     <Description>Common extensions used in CSI projects.</Description>
-    <Authors>ONG ZHI XIAN</Authors>
+    <Authors>Zhixian Ong</Authors>
     
+    <PackageId>Csi.Extensions</PackageId>
     <!-- PackageLicenseUrl is deprecated 
          See: https://docs.microsoft.com/en-us/nuget/reference/msbuild-targets 
     <PackageLicenseUrl>http://license.txt</PackageLicenseUrl>

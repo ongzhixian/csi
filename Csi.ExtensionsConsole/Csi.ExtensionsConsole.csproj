@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Csi.Extensions.Tests\Csi.Extensions.Tests.csproj" />
     <ProjectReference Include="..\Csi.Extensions\Csi.Extensions.csproj" />
   </ItemGroup>
 

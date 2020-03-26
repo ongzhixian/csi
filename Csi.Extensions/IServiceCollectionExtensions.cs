@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 
@@ -12,6 +13,30 @@ namespace Csi.Extensions
     {
         private class ServiceDescription
         {
+            /*
+              Current choice
+              {
+                "ServiceType": "Csi.Extensions.Tests.Data.IAnimal, Csi.Extensions.Tests",
+                "ImplementationType": "Csi.Extensions.Tests.Data.Mouse, Csi.Extensions.Tests",
+                "Lifetime": "Transient"
+              }
+              
+            vs
+
+              {
+                "ServiceType": {
+                  "Name": "Csi.Extensions.Tests.Data.IAnimal",
+                  "Assembly": "Csi.Extensions.Tests"
+                },
+                "ImplementationType": {
+                  "Name": "Csi.Extensions.Tests.Data.Mouse",
+                  "Assembly": "Csi.Extensions.Tests"
+                },
+                "Lifetime": "Transient"
+              }
+
+            */
+            public string AssemblyName { get; set; }
             public string ServiceType { get; set; }
             public string ImplementationType { get; set; }
             public string Lifetime { get; set; }
@@ -23,7 +48,6 @@ namespace Csi.Extensions
         //    public static readonly EventId Remark = new EventId(100, "Remark");
         //    public static readonly EventId Start = new EventId(101, "Start");
         //    public static readonly EventId End = new EventId(102, "End:)");
-
         //    public static readonly EventId Invalid = new EventId(400, "Invalid");
         //}
 
@@ -72,6 +96,9 @@ namespace Csi.Extensions
 
         public static void ConfigureDependencyInjection(this IServiceCollection services, IConfiguration configuration, ILogger log, string configSection)
         {
+            if (configuration == null)
+                throw new ArgumentNullException(nameof(configuration));
+
             if (log == null)
             {
                 using (ServiceProvider sp = services.BuildServiceProvider())
@@ -101,20 +128,44 @@ namespace Csi.Extensions
                     continue;
                 }
 
-                string serviceTypeAssemblyName = desc.ServiceType.Substring(0, desc.ServiceType.LastIndexOf('.'));
-                string implementationTypeAssemblyName = desc.ServiceType.Substring(0, desc.ImplementationType.LastIndexOf('.'));
+                string serviceTypeAssemblyName = string.Empty;
+                string implementationTypeAssemblyName = string.Empty;
 
-                Type serviceType = assemblyDictionary[serviceTypeAssemblyName]?.ExportedTypes.FirstOrDefault(r => r.FullName == desc.ServiceType);
+                string[] parsedServiceType = desc.ServiceType.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] parsedImplementationType = desc.ImplementationType.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+                if (parsedServiceType.Length < 2)
+                {
+                    serviceTypeAssemblyName = parsedServiceType[0].Substring(0, parsedServiceType[0].LastIndexOf('.')).Trim();
+                }
+                else
+                {
+                    serviceTypeAssemblyName = parsedServiceType[1].Trim();
+                }
+
+                if (parsedImplementationType.Length < 2)
+                {
+                    implementationTypeAssemblyName = parsedImplementationType[0].Substring(0, parsedImplementationType[0].LastIndexOf('.')).Trim();
+                }
+                else
+                {
+                    implementationTypeAssemblyName = parsedImplementationType[1].Trim();
+                }
+
+                string serviceTypeName = parsedServiceType[0];
+                string implementationTypeName = parsedImplementationType[0];
+
+                Type serviceType = assemblyDictionary[serviceTypeAssemblyName]?.ExportedTypes.FirstOrDefault(r => r.FullName == serviceTypeName);
                 if (serviceType == null)
                 {
-                    log.Log(LogLevel.Error, DependencyInjectionConfigurationEvent.INVALID_SERVICE_TYPE, "Invalid service serviceType value {0}.", desc.ServiceType);
+                    log.Log(LogLevel.Error, DependencyInjectionConfigurationEvent.INVALID_SERVICE_TYPE, "Invalid service serviceType value {0}.", serviceTypeName);
                     continue;
                 }
 
-                Type implementationType = assemblyDictionary[implementationTypeAssemblyName]?.ExportedTypes.FirstOrDefault(r => r.FullName == desc.ImplementationType);
+                Type implementationType = assemblyDictionary[implementationTypeAssemblyName]?.ExportedTypes.FirstOrDefault(r => r.FullName == implementationTypeName);
                 if (implementationType == null)
                 {
-                    log.Log(LogLevel.Error, DependencyInjectionConfigurationEvent.INVALID_IMPLEMENTATION_TYPE, "Invalid service implementationType value {0}.", desc.ImplementationType);
+                    log.Log(LogLevel.Error, DependencyInjectionConfigurationEvent.INVALID_IMPLEMENTATION_TYPE, "Invalid service implementationType value {0}.", implementationTypeName);
                     continue;
                 }
 
@@ -124,7 +175,7 @@ namespace Csi.Extensions
                     serviceLifetime);
                 services.Add(sd);
 
-                log.Log(LogLevel.Information, DependencyInjectionConfigurationEvent.RESOLVED_SERVICE_DESCRIPTION, "{0} as {1} ({2})", desc.ServiceType, desc.ImplementationType, desc.Lifetime);
+                log.Log(LogLevel.Information, DependencyInjectionConfigurationEvent.RESOLVED_SERVICE_DESCRIPTION, "{0} as {1} ({2})", serviceTypeName, implementationTypeName, desc.Lifetime);
                 
             }
             log.Log(LogLevel.Information, DependencyInjectionConfigurationEvent.END_ADD_SERVICE_DESCRIPTIORS, string.Empty);
@@ -141,8 +192,8 @@ namespace Csi.Extensions
             AddAssemblyDictionary(assemblyDictionary, assemblyNames, log);
 
             // ZX: Probably don't need this
-            //assemblyNames = Assembly.GetExecutingAssembly().GetReferencedAssemblies();
-            //AddAssemblyDictionary(assemblyDictionary, Assembly.GetExecutingAssembly().GetReferencedAssemblies());
+            assemblyNames = Assembly.GetExecutingAssembly().GetReferencedAssemblies();
+            AddAssemblyDictionary(assemblyDictionary, Assembly.GetExecutingAssembly().GetReferencedAssemblies(), log);
 
             log.Log(LogLevel.Trace, DependencyInjectionConfigurationEvent.END_CREATE_ASSEMBLY_DICTIONARY, "Assembly dictionary -- created.");
 
@@ -159,14 +210,29 @@ namespace Csi.Extensions
                     continue;
                 }
 
+                if (assemblyName.Name == "Anonymously Hosted DynamicMethods Assembly")
+                    continue;
+
                 // Else try to load assembly
-                Assembly assembly = Assembly.Load(assemblyName);
-                if (assembly != null)
+                try
                 {
-                    log.Log(LogLevel.Trace, DependencyInjectionConfigurationEvent.ADD_ASSEMBLY, assemblyName.Name);
-                    assemblyDictionary.Add(assemblyName.Name, assembly);
-                    AddAssemblyDictionary(assemblyDictionary, assembly.GetReferencedAssemblies(), log);
+                    Assembly assembly = Assembly.Load(assemblyName);
+                    if (assembly != null)
+                    {
+                        log.Log(LogLevel.Trace, DependencyInjectionConfigurationEvent.ADD_ASSEMBLY, assemblyName.Name);
+                        assemblyDictionary.Add(assemblyName.Name, assembly);
+                        AddAssemblyDictionary(assemblyDictionary, assembly.GetReferencedAssemblies(), log);
+                    }
                 }
+                catch (FileNotFoundException ex)
+                {
+                    log.Log(LogLevel.Warning, DependencyInjectionConfigurationEvent.SKIP_ASSEMBLY, "Cannot load {0} - File not found {1}", assemblyName.Name, ex);
+                }
+                catch (Exception ex)
+                {
+                    log.Log(LogLevel.Warning, DependencyInjectionConfigurationEvent.SKIP_ASSEMBLY, "Cannot load {0} - Exception {1}", assemblyName.Name, ex);
+                }
+
             }
         }
     }

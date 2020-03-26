@@ -6,10 +6,13 @@ using Microsoft.Extensions.Logging;
 using Csi.Loggers;
 using System.Linq;
 using Csi.Extensions.Tests.Data;
+using System.Text;
+using System.IO;
+using System.Diagnostics;
 
 namespace Tests
 {
-    public class IServiceCollectionExtensionsTests
+    public class ConfigureDependencyInjectionTests
     {
         IConfigurationRoot config;
         ServiceCollection services;
@@ -34,6 +37,8 @@ namespace Tests
             // 2. Setup services
             services = new ServiceCollection();
             services.AddLogging(builder => builder.AddProvider(new TraceLoggerProvider()));
+            services.ConfigureDependencyInjection(config);
+            sp = services.BuildServiceProvider();
         }
 
 
@@ -45,11 +50,7 @@ namespace Tests
         public void MultipleServiceImplementationTest1()
         {
             // Arrange
-            services.AddTransient<IAnimal, Dog>();
-            services.AddTransient<IAnimal, Cat>();
-            services.AddTransient<IAnimal, Mouse>();
-            // 3. Make service provider
-            sp = services.BuildServiceProvider();
+            // N/A. See Setup()
 
             // Act
             IAnimal animal = sp.GetService<IAnimal>();
@@ -67,11 +68,7 @@ namespace Tests
         public void MultipleServiceImplementationSpecificTest1()
         {
             // Arrange
-            services.AddTransient<IAnimal, Dog>();
-            services.AddTransient<IAnimal, Cat>();
-            services.AddTransient<IAnimal, Mouse>();
-            // 3. Make service provider
-            sp = services.BuildServiceProvider();
+            // N/A. See Setup()
 
             // Act
             IAnimal animal = sp.GetServices<IAnimal>().FirstOrDefault(r => r.GetType() == typeof(Dog));
@@ -89,19 +86,15 @@ namespace Tests
         public void ServiceMissingSpecificImplementationTest1()
         {
             // Arrange
-            services.AddTransient<IAnimal, Dog>();
-            //services.AddTransient<IAnimal, Cat>();
-            services.AddTransient<IAnimal, Mouse>();
-            // 3. Make service provider
-            sp = services.BuildServiceProvider();
+            // N/A. See Setup()
 
             // Act
-            IAnimal animal = sp.GetServices<IAnimal>().FirstOrDefault(r => r.GetType() == typeof(Cat));
+            IAnimal animal = sp.GetServices<IAnimal>().FirstOrDefault(r => r.GetType() == typeof(Chicken));
 
             // Assert
             Assert.IsNull(animal);
-            //Assert.AreEqual("woof", animal.MakeSound());
         }
+
 
     }
 }

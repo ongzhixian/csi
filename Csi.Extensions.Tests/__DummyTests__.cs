@@ -9,6 +9,7 @@ using Csi.ExtensionsConsole;
 
 namespace Tests
 {
+    [Obsolete]
     //[Ignore("Dummy tests")]
     [Explicit]
     public class __DummyTests__

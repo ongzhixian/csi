@@ -9,7 +9,8 @@ using Csi.ExtensionsConsole;
 
 namespace Tests
 {
-    public class ILoggerExtensionsTests
+    [Obsolete("Kept for reference")]
+    public class _ObsoleteLoggerExtensionsTests
     {
         IConfigurationRoot config;
         ServiceCollection services;
@@ -45,7 +46,7 @@ namespace Tests
             // Setup a logger
             log = sp
                 .GetService<ILoggerFactory>()
-                .CreateLogger<ILoggerExtensionsTests>();
+                .CreateLogger<_ObsoleteLoggerExtensionsTests>();
         }
 
         [Test]
