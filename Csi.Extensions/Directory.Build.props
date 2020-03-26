@@ -15,7 +15,7 @@
     -->
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     
-    <PackageProjectUrl>http://project.txt</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/ongzhixian/csi/wiki/Csi.Extensions</PackageProjectUrl>
     <PackageTags>Csi, ClassLib, Extensions</PackageTags>
     <PackageReleaseNotes>This class library contains common extensions that maybe used in various Csi projects.
 For example, dependency injection (DI) configurator.
@@ -50,9 +50,9 @@ The idea is to consolidate all these common extensions together.</PackageRelease
     AssemblyVersion - Tracks features of product by version (including build)
     FileVersion     - Tracks physical compilation
     -->
-    <Version>0.0.1</Version>
-    <AssemblyVersion>0.0.1.0</AssemblyVersion>
-    <FileVersion>0.0.1.1</FileVersion>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
     
     
   </PropertyGroup>

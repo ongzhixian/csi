@@ -17,8 +17,6 @@ namespace Tests
     {
         IConfigurationRoot config;
         ServiceCollection services;
-        ILogger log;
-
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
