@@ -1,0 +1,62 @@
+<Project>
+
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+
+  <PropertyGroup>
+    
+    <Product>Csi.Loggers</Product>
+    <Description>Common loggers used in CSI projects.</Description>
+    <Authors>ONG ZHI XIAN</Authors>
+    
+    <!-- PackageLicenseUrl is deprecated 
+         See: https://docs.microsoft.com/en-us/nuget/reference/msbuild-targets 
+    <PackageLicenseUrl>http://license.txt</PackageLicenseUrl>
+    -->
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    
+    <PackageProjectUrl>http://project.txt</PackageProjectUrl>
+    <PackageTags>Csi, ClassLib, Loggers</PackageTags>
+    <PackageReleaseNotes>This class library contains common loggers that maybe used in various Csi projects or in unit tests.
+The idea is to consolidate all these common loggers together.</PackageReleaseNotes>
+    
+    <!-- PackageIconUrl is deprecated 
+         See: https://docs.microsoft.com/en-us/nuget/reference/msbuild-targets 
+    <PackageIconUrl>http://project-icon.txt</PackageIconUrl>
+    -->
+    <PackageIcon>icon.png</PackageIcon>
+    
+    
+    <!-- Versioning guide 
+    Use semantic versioning for version element
+    Semantic versioning  uses: MAJOR.MINOR.PATCH
+    MAJOR version when you make incompatible API changes,
+    MINOR version when you add functionality in a backwards compatible manner, and
+    PATCH version when you make backwards compatible bug fixes
+    
+    Use Microsoft assembly versioning for AssemblyVersion element
+    Microsoft assembly versioning uses: <major version>.<minor version>.<build number>.<revision>
+    MAJOR, MINOR, BUILD/PATCH should be the same as semantic versioning
+    REVISION version when you make non-breaking enhancements or code cleanup 
+    
+    Use file versioning for AssemblyVersion element
+    File versioning uses: <major version>.<minor version>.<patch>.<cc>
+    MAJOR, MINOR, BUILD/PATCH should be the same as semantic versioning
+    CC version for each compilation
+    
+    Version vs AssemblyVersion vs FileVersion
+    Version         - Tracks features of product by version
+    AssemblyVersion - Tracks features of product by version (including build)
+    FileVersion     - Tracks physical compilation
+    -->
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    
+    
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <None Include="images\icon.png" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+
+</Project>
