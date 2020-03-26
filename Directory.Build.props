@@ -1,11 +1,11 @@
 <Project>
   <PropertyGroup>
 
-    <Company>PGG</Company>
-    <Copyright>Copyright © 2020, PGG</Copyright>
+    <Company>Emptool</Company>
+    <Copyright>Copyright © 2020, Emptool</Copyright>
     
-    <RepositoryUrl>http://project-repo.txt</RepositoryUrl>
-    <RepositoryType>repo type(GIT?)</RepositoryType>
+    <RepositoryUrl>https://github.com/ongzhixian/csi</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     
     <NeutralLanguage>en</NeutralLanguage>
     
