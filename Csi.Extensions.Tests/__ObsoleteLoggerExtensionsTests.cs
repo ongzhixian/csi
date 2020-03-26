@@ -5,7 +5,6 @@ using NUnit.Framework;
 using Csi.Extensions;
 using System.IO;
 using System;
-using Csi.ExtensionsConsole;
 
 namespace Tests
 {

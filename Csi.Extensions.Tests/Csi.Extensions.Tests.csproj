@@ -9,6 +9,7 @@
   <ItemGroup>
     <Compile Remove="_ObsoleteLoggerExtensionsTests.cs" />
     <Compile Remove="__DummyTests__.cs" />
+    <Compile Remove="__ObsoleteLoggerExtensionsTests.cs" />
   </ItemGroup>
 
   <ItemGroup>
