@@ -73,7 +73,7 @@ namespace Csi.AuthenticationGateway.Controllers
             //     cmd.ExecuteNonQuery();
             // }
 
-            using (System.Data.IDbConnection conn = new System.Data.SQLite.SQLiteConnection("Data Source=./wwwroot/data/auth.db;Version=3;"))
+            using (System.Data.IDbConnection conn = new System.Data.SQLite.SQLiteConnection("Data Source=./wwwroot/data/auth.sqlite3;Version=3;"))
             {
                 
 
