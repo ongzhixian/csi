@@ -4,21 +4,97 @@ namespace Csi.Data.Models
 {
     // Namespace for common data models used through out Csi
 
-    public static sealed class AppDateTime
+    public static class AppDateTime2
     {
-        private DateTime appDateTime;
+        private static Func<DateTime> nowFunc = () => DateTime.Now;
+        private static Func<DateTime> utcNowFunc = () => DateTime.UtcNow;
 
-        public DateTime UtcNow 
+
+        public static DateTime Now => nowFunc();
+
+        public static DateTime UtcNow => utcNowFunc();
+
+        public static void Reset()
         {
+            nowFunc = () => DateTime.Now;
+            utcNowFunc = () => DateTime.UtcNow;
+        }
+
+        public static void Set(DateTime dateTime)
+        {
+            nowFunc = () => dateTime;
+            utcNowFunc = () => dateTime.ToUniversalTime();
+        }
+
+
+        //public static DateTime UtcNow
+        //{
+        //    get
+        //    {
+        //        return dateTime.HasValue ? dateTime.Value.ToUniversalTime() : DateTime.UtcNow;
+        //    }
+        //    set
+        //    {
+        //        dateTime = value;
+        //    }
+        //}
+
+        //public static void Reset()
+        //{
+        //    dateTime = null;
+        //}
+
+    }
+
+    public static class AppDateTime
+    {
+        private static DateTime? dateTime = null;
+        
+        public static DateTime Now {
             get {
-                
-                appDateTime.
+                return dateTime.HasValue ? dateTime.Value : DateTime.Now;
             }
             set {
-
+                dateTime = value;
             }
         }
+
+        public static DateTime UtcNow {
+            get {
+                return dateTime.HasValue ? dateTime.Value.ToUniversalTime() : DateTime.UtcNow;
+            }
+            set {
+                dateTime = value;
+            }
+        }
+
+        public static void Reset()
+        {
+            dateTime = null;
+        }
+
     }
+
+    // public static class SystemTime
+    // {
+    //     /// <summary> Normally this is a pass-through to DateTime.Now, but it can be overridden with SetDateTime( .. ) for testing or debugging.
+    //     /// </summary>
+    //     public static Func<DateTime> Now = () => DateTime.Now;
+    //
+    //     /// <summary> Set time to return when SystemTime.Now() is called.
+    //     /// </summary>
+    //     public static void SetDateTime(DateTime dateTimeNow)
+    //     {
+    //         Now = () => dateTimeNow;
+    //     }
+    //
+    //     /// <summary> Resets SystemTime.Now() to return DateTime.Now.
+    //     /// </summary>
+    //     public static void ResetDateTime()
+    //     {
+    //         Now = () => DateTime.Now;
+    //     }
+    // }
 
     public interface IRequest
     {
@@ -35,6 +111,8 @@ namespace Csi.Data.Models
         {
             this.RequestType = nameof(Request);
             this.DateTime = DateTime.UtcNow;
+
+            
         }
     }
 
